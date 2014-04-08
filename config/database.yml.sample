@@ -1,0 +1,19 @@
+connection: &connection
+  adapter: postgresql
+  host: localhost
+  username: YOUR USERNAME
+  password: YOUR PASSWORD
+  encoding: utf8
+  min_messages: warning #magic sauce
+
+development:
+  database: city_grids_development
+  <<: *connection
+
+test:
+  database: city_grids_test
+  <<: *connection
+
+production:
+  database: city_grids_production
+  <<: *connection
