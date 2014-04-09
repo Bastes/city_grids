@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 ruby '2.1.1'
 gem 'rails', '4.0.4'
+gem 'rails-i18n'
 
 # Use sqlite3 as the database for Active Record
 
@@ -69,10 +70,13 @@ end
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
+  gem 'shoulda-matchers'
 end
 
 group :test do
   gem 'capybara'
+  gem 'poltergeist'
+  gem 'capybara-screenshot'
   gem 'database_cleaner', '1.0.1'
   gem 'email_spec'
 end

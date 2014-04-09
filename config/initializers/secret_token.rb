@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-CityGrids::Application.config.secret_key_base = ENV['secret_key_base']
+CityGrids::Application.config.secret_key_base = if Rails.env.test? then ('x' * 30) else ENV['secret_key_base'] end
