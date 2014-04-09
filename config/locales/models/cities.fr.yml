@@ -1,0 +1,6 @@
+fr:
+  activerecord:
+    models:
+      city:
+        one:   ville
+        other: villes

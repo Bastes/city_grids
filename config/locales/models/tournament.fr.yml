@@ -1,0 +1,16 @@
+fr:
+  activerecord:
+    models:
+      tournament:
+        one:   tournois
+        other: tournois
+      attributes:
+        tournament:
+          address: adresse
+          organizer_email: email de l'organisateur
+          organizer_alias: pseudo de l'organisateur
+          places: nombre de places
+          begins_at: commence à
+          ends_at: finis à
+          abstract: description
+          city: ville

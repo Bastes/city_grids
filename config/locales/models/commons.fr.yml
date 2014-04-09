@@ -1,0 +1,5 @@
+fr:
+  attributes:
+    name: nom
+    created_at: créé à
+    updated_at: modifié à

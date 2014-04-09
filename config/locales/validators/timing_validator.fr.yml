@@ -1,0 +1,7 @@
+fr:
+  model:
+    errors:
+      custom:
+        timing:
+          before: doit être après %{other_field}
+          after:  doit être avant %{other_field}

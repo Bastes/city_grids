@@ -50,6 +50,7 @@ gem 'slim-rails'
 gem 'therubyracer', :platform=>:ruby
 gem 'unicorn'
 gem 'unicorn-rails'
+gem 'valid_email'
 
 group :development do
   gem 'better_errors'
