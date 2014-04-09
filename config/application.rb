@@ -11,6 +11,7 @@ module CityGrids
     I18n.config.enforce_available_locales = true
     config.i18n.available_locales = %i(fr)
     config.i18n.default_locale = :fr
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
 
     config.generators do |g|
       g.test_framework :rspec, fixture: false
