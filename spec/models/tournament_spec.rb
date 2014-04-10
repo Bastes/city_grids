@@ -23,4 +23,19 @@ describe Tournament do
       it { should_not allow_value(1.second.ago).for(:ends_at) }
     end
   end
+
+  describe 'scopes' do
+    describe '#incoming' do
+      let(:incoming_tournaments) { 3.times.map { |n| create :tournament, begins_at: n.days.from_now } }
+      let(:past_tournaments)     { 3.times.map { |n| create :tournament, begins_at: (n + 1).days.ago } }
+
+      it { expect(Tournament.incoming).to match_array incoming_tournaments }
+    end
+
+    describe 'ordered' do
+      let(:tournaments) { [1, -2, 4].map { |n| create :tournament, begins_at: n.days.from_now } }
+
+      it { expect(Tournament.ordered).to eq tournaments.sort_by(&:begins_at) }
+    end
+  end
 end

@@ -1,3 +1,3 @@
 ul#cities
   - @cities.each do |city|
-    li= city.name
+    li== link_to city.name, city

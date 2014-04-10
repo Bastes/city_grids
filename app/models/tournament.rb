@@ -8,4 +8,7 @@ class Tournament < ActiveRecord::Base
   validates :address,         presence: true
   validates :begins_at,       presence: true
   validates :ends_at,         timing: { after: :begins_at }
+
+  scope :incoming, -> { where('begins_at > ?', Time.now.to_date) }
+  scope :ordered,  -> { order('begins_at asc') }
 end

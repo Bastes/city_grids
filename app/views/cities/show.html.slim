@@ -1,0 +1,8 @@
+#city
+  .city= @city.name
+  ul#tournaments
+    - @incoming_tournaments.each do |tournament|
+      li
+        .begins_on= l tournament.begins_at.to_date, format: :long
+        .name= tournament.name
+        == link_to tournament.address, %Q(https://maps.google.fr/maps?q=#{tournament.address.gsub(/[&?]+/, ' ').strip.gsub(/\s+/, '+')}), class: 'address', target: '_blank'
