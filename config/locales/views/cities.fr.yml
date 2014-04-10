@@ -1,6 +1,7 @@
 fr:
   cities:
     show:
+      incoming_tournaments: Prochains tournois
       places:
         one: une place
         other: '%{count} places'

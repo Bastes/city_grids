@@ -1,9 +1,13 @@
 #city
-  .city= @city.name
-  ul#tournaments
-    - @incoming_tournaments.each do |tournament|
-      li
-        .begins_on= l tournament.begins_at.to_date, format: :long
-        .name= tournament.name
-        == link_to tournament.address, tournament.address_url, class: 'address', target: '_blank'
-        .places= t '.places', count: tournament.places
+  .city
+    h2= @city.name
+  .tournaments
+    h3= t '.incoming_tournaments'
+    ul.no-bullet
+      - @incoming_tournaments.each do |tournament|
+        li
+          h4
+            small.begins-on= l tournament.begins_at.to_date, format: :long
+            span.name= tournament.name
+          == link_to tournament.address, tournament.address_url, class: 'address', target: '_blank'
+          .places= t '.places', count: tournament.places
