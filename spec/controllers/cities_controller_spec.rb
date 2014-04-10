@@ -21,5 +21,6 @@ describe CitiesController do
     it { expect(response).to be_success }
     it { expect(assigns[:city]).to eq city }
     it { expect(assigns[:incoming_tournaments]).to eq incoming_tournaments }
+    it { expect(assigns[:incoming_tournaments]).to be_decorated }
   end
 end

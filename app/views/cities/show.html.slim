@@ -5,4 +5,4 @@
       li
         .begins_on= l tournament.begins_at.to_date, format: :long
         .name= tournament.name
-        == link_to tournament.address, %Q(https://maps.google.fr/maps?q=#{tournament.address.gsub(/[&?]+/, ' ').strip.gsub(/\s+/, '+')}), class: 'address', target: '_blank'
+        == link_to tournament.address, tournament.address_url, class: 'address', target: '_blank'

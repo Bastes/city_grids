@@ -5,6 +5,6 @@ class CitiesController < ApplicationController
 
   def show
     @city = City.find params[:id]
-    @incoming_tournaments = @city.tournaments.incoming.ordered.load
+    @incoming_tournaments = @city.tournaments.incoming.ordered.decorate
   end
 end
