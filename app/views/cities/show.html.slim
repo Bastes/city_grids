@@ -6,3 +6,4 @@
         .begins_on= l tournament.begins_at.to_date, format: :long
         .name= tournament.name
         == link_to tournament.address, tournament.address_url, class: 'address', target: '_blank'
+        .places= t '.places', count: tournament.places

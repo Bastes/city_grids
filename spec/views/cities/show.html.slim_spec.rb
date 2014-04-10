@@ -21,6 +21,7 @@ describe 'cities/show.html.slim' do
           item.should have_selector %Q(.name), text: tournament.name
           item.should have_selector %Q(.begins_on), text: I18n.l(tournament.begins_at.to_date, format: :long)
           item.should have_selector %Q(a.address[href="#{tournament.address_url}"][target="_blank"]), text: tournament.address
+          item.should have_selector %Q(.places), text: %r(\b#{tournament.places}\b)
         end
       end
     end

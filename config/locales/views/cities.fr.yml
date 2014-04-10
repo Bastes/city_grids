@@ -1,0 +1,6 @@
+fr:
+  cities:
+    show:
+      places:
+        one: une place
+        other: '%{count} places'
