@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe 'cities/index.html.slim' do
   let(:cities) { create_list :city, 3 }
+  before { cities.each_with_index { |city, i| (-2..0).each { |j| create :tournament, city: city, begins_at: (i + j).days.from_now } } }
+  before { cities.each &:reload }
   before { assign :cities, cities }
 
   before { render }
@@ -11,9 +13,24 @@ describe 'cities/index.html.slim' do
   it { should_not have_selector(%Q(.translation_missing)) }
 
   specify 'the cities list' do
-    within '#cities ul' do |list|
+    within '#cities ul.cities' do |cities_list|
       cities.each_with_index do |city, i|
-        list.should have_selector %Q(li:nth-child(#{i + 1}) h2 a[href="#{view.city_path(city)}"]), text: city.name
+        within cities_list, %Q(> li:nth-child(#{i + 1})) do |city_item|
+          city_item.should have_selector %Q(h2 a[href="#{view.city_path(city)}"]), text: city.name
+          if city.incoming_tournaments.count == 0
+            city_item.should_not have_selector %Q(ul.incoming_tournaments)
+          else
+            within city_item, %Q(ul.tournaments) do |tournaments_list|
+              tournaments_list.should have_selector %Q(li), count: city.incoming_tournaments.count
+              city.incoming_tournaments.each_with_index do |tournament, j|
+                within tournaments_list, %Q(li:nth-child(#{j + 1})) do |tournament_item|
+                  tournament_item.should have_selector %Q(.begins-on), text: I18n.l(tournament.begins_at.to_date)
+                  tournament_item.should have_selector %Q(.name), text: tournament.name
+                end
+              end
+            end
+          end
+        end
       end
     end
   end

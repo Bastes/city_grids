@@ -2,4 +2,16 @@
   @include grid-row()
   ul.cities
     @include grid-column(12)
+    @media #{$medium-only}
+      @include block-grid(2)
+    @media #{$large-only}
+      @include block-grid(3)
     @extend .no-bullet
+    > li
+      ul.tournaments
+        @extend .no-bullet
+        > li
+          text-align: left
+          .begins-on
+            &:after
+              content: ' - '

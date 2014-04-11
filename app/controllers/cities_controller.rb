@@ -1,6 +1,6 @@
 class CitiesController < ApplicationController
   def index
-    @cities = City.order(name: :asc)
+    @cities = City.includes(:incoming_tournaments).order(name: :asc)
   end
 
   def show

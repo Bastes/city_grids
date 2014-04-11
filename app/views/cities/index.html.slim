@@ -3,3 +3,9 @@
     - @cities.each do |city|
       li
         h2== link_to city.name, city
+        - unless city.incoming_tournaments.blank?
+          ul.tournaments
+            - city.incoming_tournaments.each do |tournament|
+              li
+                small.begins-on= l tournament.begins_at.to_date
+                span.name= tournament.name
