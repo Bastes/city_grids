@@ -5,7 +5,9 @@
         h2== link_to city.name, city
         - unless city.incoming_tournaments.blank?
           ul.tournaments
-            - city.incoming_tournaments.each do |tournament|
+            - city.incoming_tournaments.take(3).each do |tournament|
               li
                 small.begins-on= l tournament.begins_at.to_date
                 span.name= tournament.name
+            - if city.incoming_tournaments.count > 3
+              li== link_to t('.more_tournaments', count: city.incoming_tournaments.count - 3), city

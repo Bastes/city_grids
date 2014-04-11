@@ -1,5 +1,9 @@
 fr:
   cities:
+    index:
+      more_tournaments:
+        one: et un autre tournois...
+        other: et %{count} autres tournois...
     show:
       incoming_tournaments: Prochains tournois
       places:
