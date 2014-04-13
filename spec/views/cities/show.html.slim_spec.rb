@@ -2,9 +2,8 @@ require 'spec_helper'
 
 describe 'cities/show.html.slim' do
   let(:city) { create :city }
-  let(:incoming_tournaments) { create_list(:tournament, 3).map &:decorate }
-  before { assign :city, city }
-  before { assign :incoming_tournaments, incoming_tournaments }
+  before { create_list(:tournament, 3, city: city).map &:decorate }
+  before { assign :city, city.reload }
 
   before { render }
 
@@ -19,7 +18,7 @@ describe 'cities/show.html.slim' do
 
   specify 'incoming tournaments' do
     within '#city .tournaments ul' do |list|
-      incoming_tournaments.each_with_index do |tournament, i|
+      city.incoming_tournaments.decorate.each_with_index do |tournament, i|
         within list, %Q(li:nth-child(#{i + 1})) do |item|
           item.should have_selector %Q(h4 .name), text: tournament.name
           item.should have_selector %Q(h4 .begins-on), text: I18n.l(tournament.begins_at.to_date, format: :long)

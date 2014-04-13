@@ -10,7 +10,7 @@
           a.close(href="#") &times;
     h3= t '.incoming_tournaments'
     ul.no-bullet
-      - @incoming_tournaments.each do |tournament|
+      - @city.incoming_tournaments.decorate.each do |tournament|
         li
           h4
             small.begins-on= l tournament.begins_at.to_date, format: :long

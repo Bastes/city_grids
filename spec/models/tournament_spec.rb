@@ -28,13 +28,20 @@ describe Tournament do
 
   describe 'scopes' do
     describe '#incoming' do
-      let(:incoming_tournaments) { 3.times.map { |n| create :tournament, begins_at: n.days.from_now } }
-      let(:past_tournaments)     { 3.times.map { |n| create :tournament, begins_at: (n + 1).days.ago } }
+      let!(:incoming_tournaments) { create_list :tournament, 3, :incoming }
+      before { create_list :tournament, 3, :passed }
 
       it { expect(Tournament.incoming).to match_array incoming_tournaments }
     end
 
-    describe 'ordered' do
+    describe '#activated' do
+      let!(:activated_tournaments) { create_list :tournament, 3, :activated }
+      before { create_list :tournament, 3, :awaiting_activation }
+
+      it { expect(Tournament.activated).to match_array activated_tournaments }
+    end
+
+    describe '#ordered' do
       let(:tournaments) { [1, -2, 4].map { |n| create :tournament, begins_at: n.days.from_now } }
 
       it { expect(Tournament.ordered).to eq tournaments.sort_by(&:begins_at) }

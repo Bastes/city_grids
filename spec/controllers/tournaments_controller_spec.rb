@@ -69,7 +69,7 @@ describe TournamentsController do
   end
 
   describe 'GET "activate"' do
-    let(:tournament) { create :tournament }
+    let(:tournament) { create :tournament, :awaiting_activation }
     subject(:the_query) { -> { get 'activate', id: tournament.id, a: admin } }
 
     context 'with the right admin token' do

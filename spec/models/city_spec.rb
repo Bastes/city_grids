@@ -7,8 +7,9 @@ describe City do
     describe '#incoming_tournaments' do
       subject(:city) { create :city }
       let!(:incoming_tournaments) { [2, 7, 1].map { |n| create :tournament, begins_at: n.days.from_now, city: city } }
-      before { 2.times { |n| create :tournament, begins_at: (n + 1).days.ago, city: city } }
-      before { 2.times { |n| create :tournament, begins_at: n.days.from_now, city: create(:city) } }
+      before { create_list :tournament, 2, :awaiting_activation, city: city }
+      before { create_list :tournament, 2, :passed, city: city }
+      before { create_list :tournament, 2, city: create(:city) }
 
       its(:incoming_tournaments) { should eq incoming_tournaments.sort_by(&:begins_at) }
     end

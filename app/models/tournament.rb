@@ -9,8 +9,9 @@ class Tournament < ActiveRecord::Base
   validates :begins_at,       presence: true
   validates :ends_at,         timing: { after: :begins_at }, allow_blank: true
 
-  scope :incoming, -> { where('begins_at > ?', Time.now.to_date) }
-  scope :ordered,  -> { order('begins_at asc') }
+  scope :incoming,  -> { where 'begins_at > ?', Time.now.to_date }
+  scope :activated, -> { where activated: true }
+  scope :ordered,   -> { order 'begins_at asc' }
 
   before_save :set_admin
 

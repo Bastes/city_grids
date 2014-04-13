@@ -13,6 +13,7 @@ describe CitiesController do
     let!(:cities) { create_list :city, 3 }
     let(:city) { cities.sample }
     let!(:incoming_tournaments) { [3, 4, 0].map { |n| create :tournament, begins_at: n.days.from_now, city: city }.sort_by(&:begins_at) }
+    before { create :tournament, :awaiting_activation, city: city }
     before { create :tournament, begins_at: 1.day.ago, city: city }
     before { create :tournament, begins_at: 1.day.from_now, city: (cities - [city]).sample }
 
@@ -20,7 +21,5 @@ describe CitiesController do
 
     it { expect(response).to be_success }
     it { expect(assigns[:city]).to eq city }
-    it { expect(assigns[:incoming_tournaments]).to eq incoming_tournaments }
-    it { expect(assigns[:incoming_tournaments]).to be_decorated }
   end
 end
