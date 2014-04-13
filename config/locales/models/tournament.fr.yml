@@ -6,6 +6,7 @@ fr:
         other: tournois
       attributes:
         tournament:
+          name: nom
           address: adresse
           organizer_email: email de l'organisateur
           organizer_alias: pseudo de l'organisateur
@@ -14,3 +15,30 @@ fr:
           ends_at: finis à
           abstract: description
           city: ville
+  simple_form:
+    labels:
+      tournament:
+        name: Nom du tournois
+        address: Adresse du tournois
+        organizer_email: Votre adresse email
+        organizer_alias: Votre pseudo
+        places: Nombre de places
+        begins_at: Date et heure de début
+        ends_at: Date et heure de fin
+        abstract: Informations sur le tournois
+    hints:
+      tournament:
+        organizer_email: Votre email ne sera jamais communiqué à un tiers ni utilisé à fins de prospection.
+        places: Le nombre de places est indicatif.
+        abstract: Set de cartes autorisés, etc.
+  helpers:
+    submit:
+      tournament:
+        create: Créer mon tournois
+        update: Modifier mon tournois
+  flash:
+    tournaments:
+      create:
+        notice: "Un email de validation vous a été envoyé. Cliquez sur le lien qu'il contient pour activer votre tournois."
+      validate:
+        notice: "Votre tournois est activé ! Vous recevrez bientôt un email contenant votre url d'administration confidentielle."

@@ -14,6 +14,7 @@ describe 'cities/show.html.slim' do
 
   describe 'the city' do
     it { should have_selector(%Q(#city .city h2), text: city.name) }
+    it { should have_selector(%Q(#city .city a[href="#{view.new_city_tournament_path(city)}"])) }
   end
 
   specify 'incoming tournaments' do

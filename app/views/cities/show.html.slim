@@ -1,7 +1,13 @@
 #city
   .city
-    h2= @city.name
+    = render partial: @city
+    == link_to t('.new_tournament'), [:new, @city, :tournament], class: 'button'
   .tournaments
+    - flash.each do |type, message|
+      - if type == :notice
+        .alert-box.radius.success(data-alert)
+          = message
+          a.close(href="#") &times;
     h3= t '.incoming_tournaments'
     ul.no-bullet
       - @incoming_tournaments.each do |tournament|

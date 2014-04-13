@@ -5,6 +5,7 @@ fr:
         one: et un autre tournois...
         other: et %{count} autres tournois...
     show:
+      new_tournament: J'organise un tournois
       incoming_tournaments: Prochains tournois
       places:
         one: une place

@@ -1,0 +1,15 @@
+#city
+  .city== render partial: @tournament.city
+  = simple_form_for [@tournament.city, @tournament] do |f|
+    h3= t '.new_tournament'
+
+    = f.input :organizer_email
+    = f.input :organizer_alias
+    = f.input :name
+    = f.input :address
+    = f.input :begins_at, as: :datetime_local
+    = f.input :ends_at, as: :datetime_local
+    = f.input :places
+    = f.input :abstract
+
+    = f.button :submit

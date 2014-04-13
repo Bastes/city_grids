@@ -6,7 +6,7 @@ Bundler.require(*Rails.groups)
 
 module CityGrids
   class Application < Rails::Application
-    config.autoload_paths += Dir[Rails.root.join(*%w(lib validators))]
+    config.autoload_paths += Dir[Rails.root.join(*%w(lib *))]
 
     config.time_zone = 'Paris'
 

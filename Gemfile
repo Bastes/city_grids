@@ -52,6 +52,7 @@ gem 'unicorn'
 gem 'unicorn-rails'
 gem 'valid_email'
 gem 'draper'
+gem 'responders'
 
 group :development do
   gem 'better_errors'
