@@ -19,6 +19,8 @@ describe TournamentsController do
     context 'with valid data' do
       let(:tournament) { attributes_for :tournament }
 
+      before { expect(TournamentMailer).to receive(:activation).with(an_instance_of(Tournament)).and_return(double().tap { |d| expect(d).to receive(:deliver) }) }
+
       it { should change { city.reload.tournaments.count }.by 1 }
 
       context 'after the query' do
@@ -43,6 +45,8 @@ describe TournamentsController do
     context 'with invalid data' do
       let(:tournament) { attributes_for :tournament, organizer_email: 'I might have botched that one' }
 
+      before { expect(TournamentMailer).not_to receive(:activation) }
+
       it { should_not change { city.reload.tournaments.count } }
 
       context 'after the query' do
@@ -61,6 +65,31 @@ describe TournamentsController do
           end
         end
       end
+    end
+  end
+
+  describe 'GET "activate"' do
+    let(:tournament) { create :tournament }
+    subject(:the_query) { -> { get 'activate', id: tournament.id, a: admin } }
+
+    context 'with the right admin token' do
+      let(:admin) { tournament.admin }
+
+      it { should change { tournament.reload.activated }.to true }
+
+      describe 'after the query' do
+        before { the_query.call }
+
+        it { expect(response).to redirect_to tournament.city }
+        it { expect(flash[:notice]).not_to be_nil }
+      end
+    end
+
+    context 'without the right admin token' do
+      let(:admin) { tournament.admin + ' oups' }
+
+      it { should raise_error ActionController::RoutingError }
+      it { expect(-> { the_query.call rescue nil }).not_to change { tournament.reload.activated } }
     end
   end
 end

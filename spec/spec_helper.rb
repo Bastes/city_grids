@@ -56,6 +56,7 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
 
   config.include WithinView
+  config.include MessagePart
 
   # since selenium tests do not cope all that well with transactional fixtures
   # we need to turn them off and clean the database by hand

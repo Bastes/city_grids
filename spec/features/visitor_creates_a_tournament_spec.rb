@@ -16,7 +16,7 @@ feature 'Visitor creates a tournament' do
     fill_in "Nombre de places",             with: tournament[:places]
     fill_in "Informations sur le tournois", with: tournament[:abstract]
     click_on "Créer mon tournois"
-    expect(page).to have_content("Un email de validation vous a été envoyé. Cliquez sur le lien qu'il contient pour activer votre tournois.")
+    expect(page).to have_content("Un email d'activation vous a été envoyé. Cliquez sur le lien qu'il contient pour activer votre tournois.")
   end
 
   scenario 'with invalid data', js: true do

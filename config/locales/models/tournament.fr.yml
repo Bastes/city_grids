@@ -39,6 +39,6 @@ fr:
   flash:
     tournaments:
       create:
-        notice: "Un email de validation vous a été envoyé. Cliquez sur le lien qu'il contient pour activer votre tournois."
-      validate:
+        notice: "Un email d'activation vous a été envoyé. Cliquez sur le lien qu'il contient pour activer votre tournois."
+      activate:
         notice: "Votre tournois est activé ! Vous recevrez bientôt un email contenant votre url d'administration confidentielle."

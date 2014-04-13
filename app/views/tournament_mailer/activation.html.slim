@@ -1,0 +1,7 @@
+p= t '.hello', alias: @tournament.organizer_alias
+
+p
+  = t '.your_tournament_awaits', name: @tournament.name, date: I18n.l(@tournament.begins_at.to_date, format: :long)
+  br
+  == link_to t('.activate_your_tournament'), activate_tournament_url(@tournament, a: @tournament.admin)
+

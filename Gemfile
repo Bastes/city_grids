@@ -74,6 +74,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
+  gem 'timecop'
 end
 
 group :test do

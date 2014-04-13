@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140409163323) do
+ActiveRecord::Schema.define(version: 20140413121101) do
 
   create_table "cities", force: true do |t|
     t.string   "name",       null: false
@@ -33,8 +33,11 @@ ActiveRecord::Schema.define(version: 20140409163323) do
     t.integer  "city_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "admin"
+    t.boolean  "activated",       default: false
   end
 
+  add_index "tournaments", ["activated"], name: "index_tournaments_on_activated", using: :btree
   add_index "tournaments", ["city_id"], name: "index_tournaments_on_city_id", using: :btree
 
 end

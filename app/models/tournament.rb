@@ -11,4 +11,10 @@ class Tournament < ActiveRecord::Base
 
   scope :incoming, -> { where('begins_at > ?', Time.now.to_date) }
   scope :ordered,  -> { order('begins_at asc') }
+
+  before_save :set_admin
+
+  def set_admin
+    self.admin ||= Digest::MD5.new.update("#{name}#{Time.now}").to_s
+  end
 end
