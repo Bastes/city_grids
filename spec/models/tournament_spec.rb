@@ -21,6 +21,8 @@ describe Tournament do
 
       it { should allow_value(1.second.from_now).for(:ends_at) }
       it { should_not allow_value(1.second.ago).for(:ends_at) }
+      it { should allow_value(nil).for(:ends_at) }
+      it { should allow_value('').for(:ends_at) }
     end
   end
 
