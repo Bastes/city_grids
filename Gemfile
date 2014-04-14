@@ -44,6 +44,8 @@ gem 'jbuilder', '~> 1.2'
 # gem 'debugger', group: [:development, :test]
 
 gem 'foundation-rails'
+gem 'zurb-ink-rails'
+gem 'roadie'
 gem 'pg'
 gem 'simple_form'
 gem 'slim-rails'
