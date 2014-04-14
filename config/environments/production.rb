@@ -80,4 +80,6 @@ CityGrids::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  config.middleware.use Rack::ForceDomain, ENV['MAIN_DOMAIN'] unless ENV['MAIN_DOMAIN'].blank?
 end
