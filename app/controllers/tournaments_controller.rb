@@ -34,7 +34,7 @@ class TournamentsController < ApplicationController
 
   def permitted_params
     params.require(:tournament).
-      permit(*%i(organizer_email organizer_alias name address places abstract)).
+      permit(*%i(organizer_email organizer_nickname name address places abstract)).
       merge(city: city).
       merge(begins_at: tournament_begins_at).
       merge(ends_at:   tournament_ends_at)

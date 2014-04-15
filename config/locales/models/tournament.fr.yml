@@ -9,7 +9,7 @@ fr:
           name: nom
           address: adresse
           organizer_email: "email de l'organisateur"
-          organizer_alias: "pseudo de l'organisateur"
+          organizer_nickname: "pseudo de l'organisateur"
           places: nombre de places
           begins_at: commence à
           ends_at: finis à
@@ -21,7 +21,7 @@ fr:
         name: Nom du tournois
         address: Adresse du tournois
         organizer_email: Votre adresse email
-        organizer_alias: Votre pseudo
+        organizer_nickname: Votre pseudo
         places: Nombre de places
         begins_at_date: Date du tournois
         begins_at_time: Début du tournois

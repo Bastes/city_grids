@@ -14,7 +14,7 @@ describe TournamentMailer do
       describe "in #{part}" do
         subject { message_part mail, part }
 
-        it { should match %r{#{Regexp.escape tournament.organizer_alias}} }
+        it { should match %r{#{Regexp.escape tournament.organizer_nickname}} }
         it { should match %r{#{Regexp.escape tournament.name}} }
         it { should match %r{#{Regexp.escape I18n.l(tournament.begins_at.to_date, format: :long)}} }
       end

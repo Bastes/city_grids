@@ -18,7 +18,7 @@ describe 'tournaments/show.html.slim' do
   specify 'the tournament itself' do
     within %Q(#tournament .tournament) do |item|
       item.should have_selector %Q(h3), text: tournament.name
-      item.should have_selector %Q(.organizer), text: tournament.organizer_alias
+      item.should have_selector %Q(.organizer), text: tournament.organizer_nickname
       item.should have_selector %Q(.timeframe .begins-at), text: I18n.l(tournament.begins_at, format: :long)
       item.should have_selector %Q(.timeframe .ends-at), text: I18n.l(tournament.ends_at, format: :time_of_day)
       item.should have_selector %Q(a.address[href="#{tournament.address_url}"][target="_blank"]), text: tournament.address

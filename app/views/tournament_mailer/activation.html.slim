@@ -1,4 +1,4 @@
-p= t '.hello', alias: @tournament.organizer_alias
+p= t '.hello', nickname: @tournament.organizer_nickname
 
 p
   = t '.your_tournament_awaits', name: @tournament.name, date: I18n.l(@tournament.begins_at.to_date, format: :long)

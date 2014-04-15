@@ -7,7 +7,7 @@
       span.begins-at= l @tournament.begins_at, format: :long
       - if @tournament.ends_at?
         span.ends-at= l @tournament.ends_at, format: :time_of_day
-    p.organizer= t '.organized_by', name: @tournament.organizer_alias
+    p.organizer= t '.organized_by', name: @tournament.organizer_nickname
     p== link_to @tournament.address, @tournament.address_url, class: 'address', target: '_blank'
     .abstract= simple_format @tournament.abstract
     - if @tournament.places?

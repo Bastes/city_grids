@@ -2,6 +2,6 @@ fr:
   tournament_mailer:
     activation:
       subject: 'Activez votre tournois Netrunner du %{date} "%{name}"'
-      hello: 'Bonjour %{alias},'
+      hello: 'Bonjour %{nickname},'
       your_tournament_awaits: 'Pour activer votre tournois du %{date} "%{name}", merci de visiter le lien suivant:'
       activate_your_tournament: 'Activer votre tournois'

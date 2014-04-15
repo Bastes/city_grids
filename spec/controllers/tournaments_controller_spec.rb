@@ -24,7 +24,7 @@ describe TournamentsController do
   describe "POST 'create'" do
     let(:city) { create :city }
     let(:tournament_attributes) do
-      %i(organizer_email organizer_alias name address places abstract).
+      %i(organizer_email organizer_nickname name address places abstract).
         inject({}) { |r, k| r.tap { r[k] = tournament.send(k) } }.
         merge begins_at_date: I18n.l(tournament.send(:begins_at), format: '%Y-%m-%d'),
               begins_at_time: I18n.l(tournament.send(:begins_at), format: '%H:%M'),
@@ -52,7 +52,7 @@ describe TournamentsController do
           it { should be_a Tournament }
           it { should_not be_a_new_record }
 
-          %i(organizer_email organizer_alias name address begins_at ends_at places abstract).each do |field|
+          %i(organizer_email organizer_nickname name address begins_at ends_at places abstract).each do |field|
             its(field) { should == tournament.send(field) }
           end
         end
@@ -77,7 +77,7 @@ describe TournamentsController do
 
           it { should be_a_new Tournament }
 
-          %i(organizer_email organizer_alias name address begins_at ends_at places abstract).each do |field|
+          %i(organizer_email organizer_nickname name address begins_at ends_at places abstract).each do |field|
             its(field) { should == tournament.send(field) }
           end
         end
