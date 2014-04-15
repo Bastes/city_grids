@@ -15,7 +15,7 @@ FactoryGirl.define do
     city
 
     after(:build) do |t|
-      t.ends_at ||= t.begins_at + rand(3..7).hours
+      t.ends_at ||= t.begins_at + rand(3..7).hours if t.begins_at?
     end
 
     trait(:activated)           { activated true }

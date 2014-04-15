@@ -13,11 +13,18 @@ describe TournamentsController do
 
   describe "POST 'create'" do
     let(:city) { create :city }
+    let(:tournament_attributes) do
+      %i(organizer_email organizer_alias name address places abstract).
+        inject({}) { |r, k| r.tap { r[k] = tournament.send(k) } }.
+        merge begins_at_date: I18n.l(tournament.send(:begins_at), format: '%Y-%m-%d'),
+              begins_at_time: I18n.l(tournament.send(:begins_at), format: '%H:%M'),
+              ends_at_time:   I18n.l(tournament.send(:ends_at),   format: '%H:%M')
+    end
 
-    subject(:the_query) { -> { post 'create', city_id: city.id, tournament: tournament } }
+    subject(:the_query) { -> { post 'create', city_id: city.id, tournament: tournament_attributes } }
 
     context 'with valid data' do
-      let(:tournament) { attributes_for :tournament }
+      let(:tournament) { build :tournament }
 
       before { expect(TournamentMailer).to receive(:activation).with(an_instance_of(Tournament)).and_return(double().tap { |d| expect(d).to receive(:deliver) }) }
 
@@ -36,14 +43,14 @@ describe TournamentsController do
           it { should_not be_a_new_record }
 
           %i(organizer_email organizer_alias name address begins_at ends_at places abstract).each do |field|
-            its(field) { should == tournament[field] }
+            its(field) { should == tournament.send(field) }
           end
         end
       end
     end
 
     context 'with invalid data' do
-      let(:tournament) { attributes_for :tournament, organizer_email: 'I might have botched that one' }
+      let(:tournament) { build :tournament, organizer_email: 'I might have botched that one' }
 
       before { expect(TournamentMailer).not_to receive(:activation) }
 
@@ -61,7 +68,7 @@ describe TournamentsController do
           it { should be_a_new Tournament }
 
           %i(organizer_email organizer_alias name address begins_at ends_at places abstract).each do |field|
-            its(field) { should == tournament[field] }
+            its(field) { should == tournament.send(field) }
           end
         end
       end

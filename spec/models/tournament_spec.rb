@@ -48,6 +48,34 @@ describe Tournament do
     end
   end
 
+  describe 'pseudo-fields' do
+    describe 'standard case (no blanks)' do
+      subject(:tournament) { build :tournament }
+
+      its(:begins_at_date) { should eq I18n.l(tournament.begins_at, format: '%Y-%m-%d') }
+      its(:begins_at_time) { should eq I18n.l(tournament.begins_at, format: '%H:%M') }
+      its(:ends_at_time)   { should eq I18n.l(tournament.ends_at,   format: '%H:%M') }
+    end
+
+    describe 'edge cases (blanks)' do
+      {
+        begins_at_date: :begins_at,
+        begins_at_time: :begins_at,
+        ends_at_time: :ends_at
+      }.each do |field, real_field|
+        describe "##{field}" do
+          [nil, ''].each do |value|
+            context "#{value.inspect}" do
+              subject(:tournament) { Tournament.new real_field => value }
+
+              its(field) { should eq nil }
+            end
+          end
+        end
+      end
+    end
+  end
+
   describe '#set_admin' do
     describe 'the method itself' do
       let(:now) { Time.now }
