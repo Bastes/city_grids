@@ -3,8 +3,6 @@
   = simple_form_for [@tournament.city, @tournament] do |f|
     h3= t '.new_tournament'
 
-    = f.error_notification
-
     .form-inputs
       = f.input :organizer_email
       = f.input :organizer_alias
