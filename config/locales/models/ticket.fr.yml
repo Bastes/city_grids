@@ -1,0 +1,28 @@
+fr:
+  activerecord:
+    models:
+      ticket:
+        one:   ticket
+        other: tickets
+      attributes:
+        ticket:
+          email: "email"
+          nickname: "pseudo"
+  simple_form:
+    labels:
+      ticket:
+        email: Votre adresse email
+        nickname: Votre pseudo
+    hints:
+      ticket:
+        email: Votre email ne sera jamais communiqué à un tiers ni utilisé à fins de prospection.
+  helpers:
+    submit:
+      ticket:
+        create: "Jack in !"
+  flash:
+    tickets:
+      create:
+        notice: "Un email de confirmation vous a été envoyé. Cliquez sur le lien qu'il contient pour confirmer votre participation au tournois."
+      activate:
+        notice: "Vous êtes inscrit au tournois! Merci et bonne chance!"

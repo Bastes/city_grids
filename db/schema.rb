@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140415190510) do
+ActiveRecord::Schema.define(version: 20140415191434) do
 
   create_table "cities", force: true do |t|
     t.string   "name",       null: false
@@ -20,6 +20,16 @@ ActiveRecord::Schema.define(version: 20140415190510) do
   end
 
   add_index "cities", ["name"], name: "index_cities_on_name", unique: true, using: :btree
+
+  create_table "tickets", force: true do |t|
+    t.string   "email"
+    t.string   "nickname"
+    t.integer  "tournament_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tickets", ["tournament_id"], name: "index_tickets_on_tournament_id", using: :btree
 
   create_table "tournaments", force: true do |t|
     t.string   "name"

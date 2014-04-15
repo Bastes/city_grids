@@ -2,6 +2,7 @@
   .city
     = render partial: @tournament.city
   .tournament
+    == render partial: 'layouts/flash'
     h3= @tournament.name
     p.timeframe
       span.begins-at= l @tournament.begins_at, format: :long

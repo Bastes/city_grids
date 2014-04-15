@@ -1,5 +1,6 @@
 class Tournament < ActiveRecord::Base
   belongs_to :city
+  has_many :tickets
 
   validates :city,               presence: true
   validates :organizer_nickname, presence: true

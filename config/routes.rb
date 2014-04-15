@@ -7,5 +7,6 @@ CityGrids::Application.routes.draw do
 
   resources :tournaments, only: [:show, :activate] do
     get :activate, on: :member
+    resources :tickets, only: [:new, :create]
   end
 end
