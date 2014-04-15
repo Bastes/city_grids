@@ -1,9 +1,13 @@
 fr:
   cities:
+    new:
+      new_city: Nouvelle ville
     index:
       more_tournaments:
         one: et un autre tournois...
         other: et %{count} autres tournois...
+      what_about_my_city: 'Et ma ville ?'
+      create_it: "Je l'ajoute !"
     show:
       new_tournament: J'organise un tournois
       incoming_tournaments: Prochains tournois

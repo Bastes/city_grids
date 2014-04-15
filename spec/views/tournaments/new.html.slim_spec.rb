@@ -16,7 +16,7 @@ describe 'tournaments/new.html.slim' do
   end
 
   specify 'the tournament form' do
-    within %Q(#city form[action="#{view.city_tournaments_path(city)}"][method="post"]) do |form|
+    within %Q(#city form[action="#{city_tournaments_path(city)}"][method="post"]) do |form|
       form.should have_selector %Q(input[name="tournament[organizer_email]"][value="#{tournament.organizer_email}"][type="email"])
       form.should have_selector %Q(input[name="tournament[organizer_alias]"][value="#{tournament.organizer_alias}"][type="text"])
 

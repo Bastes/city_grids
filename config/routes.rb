@@ -1,7 +1,7 @@
 CityGrids::Application.routes.draw do
   root to: 'cities#index'
 
-  resources :cities, only: [:show] do
+  resources :cities, only: [:show, :new, :create] do
     resources :tournaments, only: [:new, :create]
   end
 

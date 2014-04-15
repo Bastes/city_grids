@@ -33,6 +33,7 @@ describe 'cities/index.html.slim' do
             end
           end
         end
+        cities_list.should have_selector(%Q(li:last-child a[href="#{new_city_path}"]))
       end
     end
   end

@@ -1,0 +1,9 @@
+#cities
+  = simple_form_for @city do |f|
+    h2= t'.new_city'
+
+    .form-inputs
+      = f.input :name
+
+    .form-actions
+      = f.button :submit

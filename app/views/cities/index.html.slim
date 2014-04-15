@@ -11,3 +11,6 @@
                 span.name= tournament.name
             - if city.incoming_tournaments.count > 3
               li== link_to t('.more_tournaments', count: city.incoming_tournaments.count - 3), city
+    li
+      h2= t '.what_about_my_city'
+      == link_to t('.create_it'), new_city_path, class: 'button'

@@ -4,3 +4,18 @@ fr:
       city:
         one:   ville
         other: villes
+      attributes:
+        city:
+          name: nom
+  simple_form:
+    labels:
+      city:
+        name: Nom de ma ville
+  helpers:
+    submit:
+      city:
+        create: Créer ma ville
+  flash:
+    cities:
+      create:
+        notice: "Votre ville est maintenant répertoriée."
