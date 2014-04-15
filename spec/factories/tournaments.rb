@@ -22,5 +22,7 @@ FactoryGirl.define do
     trait(:awaiting_activation) { activated false }
     trait(:passed)              { begins_at { rand(1..1000).days.ago.to_date + 11.hours } }
     trait(:incoming)            { begins_at { rand(0..1000).days.from_now.to_date + 11.hours } }
+    trait(:endless)             { after(:build) { |t| t.ends_at = nil } }
+    trait(:placesless)          { after(:build) { |t| t.places = nil } }
   end
 end

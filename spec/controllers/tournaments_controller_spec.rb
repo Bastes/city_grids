@@ -1,6 +1,16 @@
 require 'spec_helper'
 
 describe TournamentsController do
+  describe "GET 'show'" do
+    let(:tournament) { create :tournament }
+
+    before { get 'show', id: tournament.id }
+
+    it { expect(response).to be_success }
+    it { expect(assigns[:tournament]).to eq tournament }
+    it { expect(assigns[:tournament]).to be_decorated }
+  end
+
   describe "GET 'new'" do
     let(:city) { create :city }
 

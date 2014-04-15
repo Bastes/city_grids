@@ -11,9 +11,10 @@
     h3= t '.incoming_tournaments'
     ul.no-bullet
       - @city.incoming_tournaments.decorate.each do |tournament|
-        li
+        li.tournament
           h4
-            small.begins-on= l tournament.begins_at.to_date, format: :long
-            span.name= tournament.name
+            = link_to tournament do
+              small.begins-on= l tournament.begins_at.to_date, format: :long
+              span.name= tournament.name
           == link_to tournament.address, tournament.address_url, class: 'address', target: '_blank'
           .places= t '.places', count: tournament.places

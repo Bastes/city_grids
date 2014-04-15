@@ -1,6 +1,10 @@
 class TournamentsController < ApplicationController
   responders :flash
 
+  def show
+    @tournament = Tournament.find(params[:id]).decorate
+  end
+
   def new
     @tournament = Tournament.new city_id: params[:city_id]
   end
@@ -12,7 +16,7 @@ class TournamentsController < ApplicationController
   end
 
   def activate
-    tournament = Tournament.find(params[:id])
+    tournament = Tournament.find params[:id]
     if tournament.admin == params[:a]
       tournament.update_attributes activated: true
       flash[:notice] = I18n.t 'flash.tournaments.activate.notice'

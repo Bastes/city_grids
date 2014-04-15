@@ -1,2 +1,6 @@
 fr:
-  hello: "Bonjour monde"
+  time:
+    formats:
+      time_of_day: '%H:%M'
+    am: 'matin'
+    pm: 'après-midi'

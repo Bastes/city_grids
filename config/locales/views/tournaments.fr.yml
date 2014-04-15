@@ -1,4 +1,9 @@
 fr:
   tournaments:
+    show:
+      organized_by: Organisé par %{name}
+      places:
+        one: "Une place"
+        other: "%{count} places"
     new:
       new_tournament: Nouveau tournois

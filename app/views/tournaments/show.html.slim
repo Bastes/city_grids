@@ -1,0 +1,14 @@
+#tournament
+  .city
+    = render partial: @tournament.city
+  .tournament
+    h3= @tournament.name
+    p.timeframe
+      span.begins-at= l @tournament.begins_at, format: :long
+      - if @tournament.ends_at?
+        span.ends-at= l @tournament.ends_at, format: :time_of_day
+    p.organizer= t '.organized_by', name: @tournament.organizer_alias
+    p== link_to @tournament.address, @tournament.address_url, class: 'address', target: '_blank'
+    .abstract= simple_format @tournament.abstract
+    - if @tournament.places?
+      .places= t '.places', count: @tournament.places

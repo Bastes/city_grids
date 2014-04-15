@@ -6,7 +6,7 @@
         - unless city.incoming_tournaments.blank?
           ul.tournaments
             - city.incoming_tournaments.take(3).each do |tournament|
-              li
+              li.tournament
                 small.begins-on= l tournament.begins_at.to_date
                 span.name= tournament.name
             - if city.incoming_tournaments.count > 3
