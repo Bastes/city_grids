@@ -1,0 +1,7 @@
+p= t '.hello', nickname: @ticket.nickname
+
+p
+  = t '.your_participation_is_pending', name: @ticket.tournament.name, date: I18n.l(@ticket.tournament.begins_at.to_date, format: :long)
+  br
+  == link_to t('.confirm_your_participation'), activate_ticket_url(@ticket, a: @ticket.admin)
+

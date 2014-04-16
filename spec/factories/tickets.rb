@@ -6,6 +6,9 @@ FactoryGirl.define do
   factory :ticket do
     sequence(:email)    { |n| "another-fake-email-#{n}@nowhere.com" }
     sequence(:nickname) { |n| "#{nickname_prefixes.sample}#{nickname_suffixes.sample} ##{n}" }
+    status              'present'
     tournament
+
+    trait(:pending)     { status 'pending' }
   end
 end

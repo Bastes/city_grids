@@ -5,5 +5,6 @@ fr:
       places:
         one: "Une place"
         other: "%{count} places"
+      jack_in: "Jack In !"
     new:
       new_tournament: Nouveau tournois

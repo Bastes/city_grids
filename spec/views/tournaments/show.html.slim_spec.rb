@@ -24,6 +24,8 @@ describe 'tournaments/show.html.slim' do
       item.should have_selector %Q(a.address[href="#{tournament.address_url}"][target="_blank"]), text: tournament.address
       item.should have_selector %Q(.abstract), text: tournament.abstract
       item.should have_selector %Q(.places), text: tournament.places
+
+      item.should have_selector %Q(a[href="#{new_tournament_ticket_path(tournament)}"])
     end
   end
 
@@ -37,5 +39,11 @@ describe 'tournaments/show.html.slim' do
     let(:tournament) { create(:tournament, :placesless).decorate }
 
     it { should_not have_selector %Q(#tournament .tournament .places) }
+  end
+
+  context 'the tournament is over' do
+    let(:tournament) { create(:tournament, :passed).decorate }
+
+    it { should_not have_selector %Q(#tournament .tournament a[href="#{new_tournament_ticket_path(tournament)}"]) }
   end
 end

@@ -9,4 +9,8 @@ CityGrids::Application.routes.draw do
     get :activate, on: :member
     resources :tickets, only: [:new, :create]
   end
+
+  resources :tickets, only: [:activate] do
+    get :activate, on: :member
+  end
 end

@@ -25,4 +25,4 @@ fr:
       create:
         notice: "Un email de confirmation vous a été envoyé. Cliquez sur le lien qu'il contient pour confirmer votre participation au tournois."
       activate:
-        notice: "Vous êtes inscrit au tournois! Merci et bonne chance!"
+        notice: "Votre inscription au tournois est validée ! Merci et bonne chance !"

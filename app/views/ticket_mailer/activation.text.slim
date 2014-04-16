@@ -1,0 +1,5 @@
+= t '.hello', nickname: @ticket.nickname
+= "\n\n"
+= t '.your_participation_is_pending', name: @ticket.tournament.name, date: I18n.l(@ticket.tournament.begins_at.to_date, format: :long)
+= "\n"
+== activate_ticket_url(@ticket, a: @ticket.admin)

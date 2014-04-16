@@ -7,7 +7,19 @@ class TicketsController < ApplicationController
 
   def create
     @ticket = Ticket.create permitted_params
+    TicketMailer.activation(@ticket).deliver if @ticket.valid?
     respond_with @ticket, location: tournament
+  end
+
+  def activate
+    ticket = Ticket.find params[:id]
+    if ticket.admin == params[:a]
+      ticket.update_attributes status: 'present'
+      flash[:notice] = I18n.t 'flash.tickets.activate.notice'
+      redirect_to ticket.tournament
+    else
+      raise ActionController::RoutingError.new('Not Found')
+    end
   end
 
   private

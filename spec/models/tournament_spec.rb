@@ -77,33 +77,5 @@ describe Tournament do
     end
   end
 
-  describe '#set_admin' do
-    describe 'the method itself' do
-      let(:now) { Time.now }
-      let(:tournament) { build :tournament, admin: nil }
-
-      before { allow(Digest::MD5).to receive(:new).and_return(double().tap { |d| allow(d).to receive(:update).with("#{tournament.name}#{now}").and_return('some hash') }) }
-      before { Timecop.freeze(now) { tournament.set_admin } }
-      subject { tournament }
-
-      describe '#admin was empty' do
-        let(:tournament) { build :tournament }
-
-        its(:admin) { should eq 'some hash' }
-      end
-
-      describe 'admin was set' do
-        let(:tournament) { build :tournament, admin: 'some other hash' }
-
-        its(:admin) { should eq 'some other hash' }
-      end
-    end
-
-    describe 'hooks' do
-      let(:tournament) { build :tournament }
-      subject { -> { tournament.save } }
-
-      it { should change(tournament, :admin) }
-    end
-  end
+  it_behaves_like 'it generates automatically an admin token', with_hash_base: ->(instance, now) { "#{instance.name}#{now}" }
 end
