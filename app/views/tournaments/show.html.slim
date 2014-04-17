@@ -3,7 +3,10 @@
     = render partial: @tournament.city
   .tournament
     == render partial: 'layouts/flash'
-    h3= @tournament.name
+    h3
+      = @tournament.name
+      - if admin?
+        small<== link_to t('.admin.edit'), edit_tournament_path(@tournament, a: @tournament.admin)
     p
       span.timeframe
         span.begins-at= l @tournament.begins_at, format: :long

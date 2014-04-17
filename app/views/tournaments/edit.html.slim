@@ -1,0 +1,20 @@
+#city
+  .city== render partial: @tournament.city
+  = simple_form_for @tournament do |f|
+    h3= t '.edit_tournament'
+
+    = hidden_field_tag :a, @tournament.admin
+
+    .form-inputs
+      = f.input :organizer_email
+      = f.input :organizer_nickname
+      = f.input :name
+      = f.input :address
+      = f.input :begins_at_date, as: :date_html5, required: true
+      = f.input :begins_at_time, as: :time_html5, required: true
+      = f.input :ends_at_time,   as: :time_html5
+      = f.input :places
+      = f.input :abstract
+
+    .form-actions
+      = f.button :submit

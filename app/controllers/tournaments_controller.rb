@@ -2,11 +2,15 @@ class TournamentsController < ApplicationController
   responders :flash
 
   def show
-    @tournament = Tournament.find(params[:id]).decorate
+    @tournament ||= tournament.decorate
   end
 
   def new
     @tournament = Tournament.new city_id: params[:city_id]
+  end
+
+  def edit
+    redirect_to tournament unless admin?
   end
 
   def create
@@ -15,9 +19,17 @@ class TournamentsController < ApplicationController
     respond_with @tournament, location: city
   end
 
+  def update
+    if admin?
+      tournament.update_attributes permitted_update_params
+      respond_with tournament, location: tournament_path(tournament, a: tournament.admin)
+    else
+      redirect_to tournament
+    end
+  end
+
   def activate
-    tournament = Tournament.find params[:id]
-    if tournament.admin == params[:a]
+    if admin?
       unless tournament.activated
         tournament.update_attributes activated: true
         flash[:notice] = I18n.t 'flash.tournaments.activate.notice'
@@ -27,6 +39,16 @@ class TournamentsController < ApplicationController
     else
       raise ActionController::RoutingError.new('Not Found')
     end
+  end
+
+  protected
+
+  helper_method def tournament
+    @tournament ||= Tournament.find params[:id]
+  end
+
+  helper_method def admin?
+    tournament.admin == params[:a]
   end
 
   private
@@ -39,6 +61,13 @@ class TournamentsController < ApplicationController
     params.require(:tournament).
       permit(*%i(organizer_email organizer_nickname name address places abstract)).
       merge(city: city).
+      merge(begins_at: tournament_begins_at).
+      merge(ends_at:   tournament_ends_at)
+  end
+
+  def permitted_update_params
+    params.require(:tournament).
+      permit(*%i(organizer_email organizer_nickname name address places abstract)).
       merge(begins_at: tournament_begins_at).
       merge(ends_at:   tournament_ends_at)
   end

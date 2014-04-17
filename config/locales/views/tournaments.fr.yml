@@ -5,5 +5,9 @@ fr:
       jack_in: "Jack In !"
       participants: "Participants"
       be_the_first: "Soyez le premier !"
+      admin:
+        edit: éditer
     new:
       new_tournament: Nouveau tournois
+    edit:
+      edit_tournament: Editer votre tournois

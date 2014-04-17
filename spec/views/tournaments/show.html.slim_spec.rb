@@ -9,6 +9,9 @@ describe 'tournaments/show.html.slim' do
   let(:city)       { tournament.city }
   before { assign :tournament, tournament }
 
+  let(:admin) { false }
+  before { allow(view).to receive(:admin?).and_return(admin) }
+
   before { render }
 
   subject { rendered }
@@ -67,5 +70,19 @@ describe 'tournaments/show.html.slim' do
     let(:tournament) { create(:tournament, :passed).decorate }
 
     it { should_not have_selector %Q(#tournament .tournament a[href="#{new_tournament_ticket_path(tournament)}"]) }
+  end
+
+  describe 'admin controls' do
+    context 'admin' do
+      let(:admin) { true }
+
+      it { should have_selector %Q(#tournament .tournament a[href="#{edit_tournament_path(tournament, a: tournament.admin)}"]) }
+    end
+
+    context 'visitor' do
+      let(:admin) { false }
+
+      it { should_not have_selector %Q(#tournament .tournament a[href="#{edit_tournament_path(tournament, a: tournament.admin)}"]) }
+    end
   end
 end

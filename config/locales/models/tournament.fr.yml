@@ -27,10 +27,14 @@ fr:
         begins_at_time: Début du tournois
         ends_at_time: Fin du tournois
         abstract: Informations sur le tournois
+    placeholders:
+      tournament:
+        address: "ex: 5 Avenue Anatole France, 75007 Paris"
     hints:
       tournament:
         organizer_email: Votre email ne sera jamais communiqué à un tiers ni utilisé à fins de prospection.
-        places: Le nombre de places est indicatif.
+        address: Pour que le lien pointe la bonne adresse, pensez à indiquer la commune et le code postal.
+        places: Le nombre de places est indicatif et ne limite pas le nombre d'inscrit.
         abstract: Set de cartes autorisés, etc.
   helpers:
     submit:
@@ -43,3 +47,5 @@ fr:
         notice: "Un email d'activation vous a été envoyé. Cliquez sur le lien qu'il contient pour activer votre tournois."
       activate:
         notice: "Votre tournois est activé ! Vous recevrez bientôt un email contenant votre url d'administration confidentielle."
+      update:
+        notice: "Votre tournois est mis à jour."
