@@ -22,6 +22,17 @@ class TicketsController < ApplicationController
     end
   end
 
+  def forfeit
+    ticket = Ticket.find params[:id]
+    if ticket.admin == params[:a]
+      ticket.update_attributes status: 'forfeit'
+      flash[:notice] = I18n.t 'flash.tickets.forfeit.notice'
+      redirect_to ticket.tournament
+    else
+      raise ActionController::RoutingError.new('Not Found')
+    end
+  end
+
   private
 
   def tournament

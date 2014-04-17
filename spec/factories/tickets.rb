@@ -11,6 +11,6 @@ FactoryGirl.define do
 
     trait(:pending)     { status 'pending' }
     trait(:present)     { status 'present' }
-    trait(:absent)      { status 'absent' }
+    trait(:forfeit)     { status 'forfeit' }
   end
 end

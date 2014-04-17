@@ -26,3 +26,5 @@ fr:
         notice: "Un email de confirmation vous a été envoyé. Cliquez sur le lien qu'il contient pour confirmer votre participation au tournois."
       activate:
         notice: "Votre inscription au tournois est validée ! Merci et bonne chance !"
+      forfeit:
+        notice: "Votre inscription au tournois est annulée. Merci."

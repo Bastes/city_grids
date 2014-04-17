@@ -4,7 +4,7 @@ describe 'tournaments/show.html.slim' do
   let(:raw_tournament) { create :tournament }
   let!(:present_tickets) { create_list :ticket, 3, :present, tournament: raw_tournament }
   before { create_list :ticket, 2, :pending, tournament: raw_tournament }
-  before { create_list :ticket, 1, :absent,  tournament: raw_tournament }
+  before { create_list :ticket, 1, :forfeit, tournament: raw_tournament }
   let(:tournament) { raw_tournament.reload.decorate }
   let(:city)       { tournament.city }
   before { assign :tournament, tournament }

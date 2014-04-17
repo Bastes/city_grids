@@ -10,7 +10,8 @@ CityGrids::Application.routes.draw do
     resources :tickets, only: [:new, :create]
   end
 
-  resources :tickets, only: [:activate] do
+  resources :tickets, only: [:activate, :forfeit] do
     get :activate, on: :member
+    get :forfeit, on: :member
   end
 end

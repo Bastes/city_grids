@@ -24,12 +24,14 @@ describe TicketMailer do
       subject { message_part mail, 'plain' }
 
       it { should match %r(#{Regexp.escape activate_ticket_url(ticket, a: ticket.admin)}) }
+      it { should match %r(#{Regexp.escape forfeit_ticket_url(ticket, a: ticket.admin)}) }
     end
 
     describe 'in html' do
       subject { message_part mail, 'html' }
 
       it { should have_selector %Q(a[href="#{activate_ticket_url(ticket, a: ticket.admin)}"]) }
+      it { should have_selector %Q(a[href="#{forfeit_ticket_url(ticket, a: ticket.admin)}"]) }
     end
   end
 end

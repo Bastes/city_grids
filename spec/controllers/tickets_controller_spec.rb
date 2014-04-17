@@ -93,4 +93,29 @@ describe TicketsController do
       it { expect(-> { the_query.call rescue nil }).not_to change { ticket.reload.status } }
     end
   end
+
+  describe 'GET "forfeit"' do
+    let(:ticket) { create :ticket, :present }
+    subject(:the_query) { -> { get 'forfeit', id: ticket.id, a: admin } }
+
+    context 'with the right admin token' do
+      let(:admin) { ticket.admin }
+
+      it { should change { ticket.reload.status }.to 'forfeit' }
+
+      describe 'after the query' do
+        before { the_query.call }
+
+        it { expect(response).to redirect_to ticket.tournament }
+        it { expect(flash[:notice]).not_to be_nil }
+      end
+    end
+
+    context 'without the right admin token' do
+      let(:admin) { ticket.admin + ' oups' }
+
+      it { should raise_error ActionController::RoutingError }
+      it { expect(-> { the_query.call rescue nil }).not_to change { ticket.reload.status } }
+    end
+  end
 end

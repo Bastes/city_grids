@@ -21,7 +21,7 @@ describe Ticket do
   describe 'scopes' do
     describe '#present' do
       let!(:present_tickets) { create_list :ticket, 3, :present }
-      before { create_list :ticket, 2, :absent }
+      before { create_list :ticket, 2, :forfeit }
       before { create_list :ticket, 1, :pending }
 
       it { expect(Ticket.present).to match_array present_tickets }

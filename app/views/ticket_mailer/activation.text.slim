@@ -3,3 +3,7 @@
 = t '.your_participation_is_pending', name: @ticket.tournament.name, date: I18n.l(@ticket.tournament.begins_at.to_date, format: :long)
 = "\n"
 == activate_ticket_url(@ticket, a: @ticket.admin)
+= "\n\n"
+= t '.to_forfeit'
+= "\n"
+== link_to t('.forfeit'), forfeit_ticket_url(@ticket, a: @ticket.admin)

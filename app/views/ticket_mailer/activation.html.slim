@@ -5,3 +5,7 @@ p
   br
   == link_to t('.confirm_your_participation'), activate_ticket_url(@ticket, a: @ticket.admin)
 
+p
+  = t '.to_forfeit'
+  br
+  == link_to t('.forfeit'), forfeit_ticket_url(@ticket, a: @ticket.admin)

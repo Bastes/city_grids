@@ -1,5 +1,5 @@
 class Ticket < ActiveRecord::Base
-  STATUS_VALUES = %w(pending present absent)
+  STATUS_VALUES = %w(pending present forfeit)
 
   belongs_to :tournament
 
