@@ -8,9 +8,9 @@
             - city.incoming_tournaments.take(3).each do |tournament|
               li.tournament
                 small.begins-on= l tournament.begins_at.to_date
-                span.name= tournament.name
+                == link_to tournament.name, tournament, class: 'name'
             - if city.incoming_tournaments.count > 3
-              li== link_to t('.more_tournaments', count: city.incoming_tournaments.count - 3), city
-    li
+              li.more== link_to t('.more_tournaments', count: city.incoming_tournaments.count - 3), city
+    li.new-city
       h2= t '.what_about_my_city'
       == link_to t('.create_it'), new_city_path, class: 'button'

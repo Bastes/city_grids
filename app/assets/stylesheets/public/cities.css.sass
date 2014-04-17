@@ -8,5 +8,12 @@
       @include block-grid(3)
     @extend .no-bullet
     > li
+      margin-bottom: 1rem
       ul.tournaments
         @extend .no-bullet
+        li
+          white-space: nowrap
+          overflow: hidden
+          text-overflow: ellipsis
+          &.more
+            margin-top: .6em

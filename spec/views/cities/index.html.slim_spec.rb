@@ -26,14 +26,14 @@ describe 'cities/index.html.slim' do
                 city.incoming_tournaments.each_with_index do |tournament, j|
                   within tournaments_list, %Q(li:nth-child(#{j + 1})) do |tournament_item|
                     tournament_item.should have_selector %Q(.begins-on), text: I18n.l(tournament.begins_at.to_date)
-                    tournament_item.should have_selector %Q(.name), text: tournament.name
+                    tournament_item.should have_selector %Q(a.name[href="#{tournament_path(tournament)}"]), text: tournament.name
                   end
                 end
               end
             end
           end
         end
-        cities_list.should have_selector(%Q(li:last-child a[href="#{new_city_path}"]))
+        cities_list.should have_selector(%Q(li.new-city a[href="#{new_city_path}"]))
       end
     end
   end
@@ -58,7 +58,7 @@ describe 'cities/index.html.slim' do
             tournament_item.should have_selector %Q(.begins-on), text: I18n.l(tournament.begins_at.to_date)
             tournament_item.should have_selector %Q(.name), text: tournament.name
           end
-          tournaments_list.should have_selector %Q(li:nth-child(4) a[href="#{view.city_path(city)}"]), text: city.incoming_tournaments.count - 3
+          tournaments_list.should have_selector %Q(li.more:nth-child(4) a[href="#{view.city_path(city)}"]), text: city.incoming_tournaments.count - 3
         end
       end
     end
