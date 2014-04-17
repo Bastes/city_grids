@@ -8,6 +8,8 @@ class Ticket < ActiveRecord::Base
   validates :email,      presence: true, uniqueness: {scope: :tournament_id}, email: true
   validates :status,     presence: true, inclusion: {in: STATUS_VALUES}
 
+  scope :present, -> { where(status: 'present') }
+
   before_save :set_admin
 
   def initialize *args, &block

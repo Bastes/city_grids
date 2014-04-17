@@ -1,7 +1,11 @@
 require 'spec_helper'
 
 describe 'tournaments/show.html.slim' do
-  let(:tournament) { create(:tournament).decorate }
+  let(:raw_tournament) { create :tournament }
+  let!(:present_tickets) { create_list :ticket, 3, :present, tournament: raw_tournament }
+  before { create_list :ticket, 2, :pending, tournament: raw_tournament }
+  before { create_list :ticket, 1, :absent,  tournament: raw_tournament }
+  let(:tournament) { raw_tournament.reload.decorate }
   let(:city)       { tournament.city }
   before { assign :tournament, tournament }
 
@@ -23,9 +27,20 @@ describe 'tournaments/show.html.slim' do
       item.should have_selector %Q(.timeframe .ends-at), text: I18n.l(tournament.ends_at, format: :time_of_day)
       item.should have_selector %Q(a.address[href="#{tournament.address_url}"][target="_blank"]), text: tournament.address
       item.should have_selector %Q(.abstract), text: tournament.abstract
-      item.should have_selector %Q(.places), text: tournament.places
-
       item.should have_selector %Q(a[href="#{new_tournament_ticket_path(tournament)}"])
+    end
+  end
+
+  specify 'the tickets list' do
+    within %Q(#tournament .tournament) do |item|
+      item.should have_selector %Q(h4 .places .all),   text: tournament.places
+      item.should have_selector %Q(h4 .places .taken), text: present_tickets.count
+      within item, %Q(ul.tickets) do |list|
+        list.should have_selector %Q(li), count: present_tickets.count
+        tournament.tickets.present.each_with_index do |ticket, index|
+          list.should have_selector %Q(li:nth-child(#{index + 1})), text: ticket.nickname
+        end
+      end
     end
   end
 
@@ -38,7 +53,14 @@ describe 'tournaments/show.html.slim' do
   context 'the tournament has no places' do
     let(:tournament) { create(:tournament, :placesless).decorate }
 
-    it { should_not have_selector %Q(#tournament .tournament .places) }
+    it { should_not have_selector %Q(#tournament .tournament h4 .places .all) }
+  end
+
+  context 'no participants (yet)' do
+    let!(:present_tickets) { nil }
+
+    it { should_not have_selector %(#tournament .tournament ul.tickets) }
+    it { should have_selector %(#tournament .tournament .be-the-first) }
   end
 
   context 'the tournament is over' do

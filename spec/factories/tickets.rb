@@ -10,5 +10,7 @@ FactoryGirl.define do
     tournament
 
     trait(:pending)     { status 'pending' }
+    trait(:present)     { status 'present' }
+    trait(:absent)      { status 'absent' }
   end
 end

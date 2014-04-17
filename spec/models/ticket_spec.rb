@@ -18,6 +18,16 @@ describe Ticket do
     it { should allow_value('yep.this-is@more_like.it').for(:email) }
   end
 
+  describe 'scopes' do
+    describe '#present' do
+      let!(:present_tickets) { create_list :ticket, 3, :present }
+      before { create_list :ticket, 2, :absent }
+      before { create_list :ticket, 1, :pending }
+
+      it { expect(Ticket.present).to match_array present_tickets }
+    end
+  end
+
   describe '#initialize' do
     context 'status not explicitely set' do
       it { expect(Ticket.new.status).to eq 'pending' }
