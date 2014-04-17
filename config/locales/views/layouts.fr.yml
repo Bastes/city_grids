@@ -2,3 +2,5 @@ fr:
   layouts:
     application:
       title: City Grids
+    nav:
+      title: City Grids

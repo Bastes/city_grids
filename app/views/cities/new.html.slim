@@ -1,7 +1,7 @@
-#cities
-  = simple_form_for @city do |f|
-    h2= t'.new_city'
+#city
+  h2= t'.new_city'
 
+  = simple_form_for @city do |f|
     .form-inputs
       = f.input :name
 

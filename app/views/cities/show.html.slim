@@ -1,7 +1,6 @@
+- current_city @city
 #city
-  .city
-    = render partial: @city
-    == link_to t('.new_tournament'), [:new, @city, :tournament], class: 'button'
+  h2= @city.name
   .tournaments
     == render partial: 'layouts/flash'
     h3= t '.incoming_tournaments'
@@ -14,3 +13,6 @@
               span.name= tournament.name
           == link_to tournament.address, tournament.address_url, class: 'address', target: '_blank'
           .places= t '.places', count: tournament.places
+  .new-tournament
+    h3= t '.my_tournament_html'
+    == link_to t('.new_tournament_html'), [:new, @city, :tournament], class: 'button'

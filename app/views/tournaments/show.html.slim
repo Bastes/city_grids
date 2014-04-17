@@ -1,12 +1,11 @@
-#tournament
-  .city
-    = render partial: @tournament.city
-  .tournament
-    == render partial: 'layouts/flash'
-    h3
-      = @tournament.name
-      - if admin?
-        small<== link_to t('.admin.edit'), edit_tournament_path(@tournament, a: @tournament.admin)
+- current_city @tournament.city
+#tournament.tournament
+  == render partial: 'layouts/flash'
+  h2
+    = @tournament.name
+    - if admin?
+      small<== link_to t('.admin.edit'), edit_tournament_path(@tournament, a: @tournament.admin)
+  .itself
     p
       span.timeframe
         span.begins-at= l @tournament.begins_at, format: :long
@@ -17,9 +16,10 @@
       br
       == link_to @tournament.address, @tournament.address_url, class: 'address', target: '_blank'
     .abstract= simple_format @tournament.abstract
-    h4
+  .participants
+    h3
       = t '.participants'
-      span.places
+      small.places
         span.taken= @tournament.tickets.present.count
         - if @tournament.places?
           span.all= @tournament.places

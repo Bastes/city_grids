@@ -6,19 +6,18 @@ describe 'tickets/new.html.slim' do
   let(:ticket) { build :ticket, tournament: tournament }
   before { assign :ticket, ticket }
 
+  before { expect(view).to receive(:current_city).with(city) }
+
   before { render }
 
   subject { rendered }
 
   it { should_not have_selector %Q(.translation_missing) }
 
-  describe 'the city' do
-    it { should have_selector(%Q(#city .city h2), text: city.name) }
-    it { should have_selector(%Q(#city .city h3), text: tournament.name) }
-  end
+  it { should have_selector(%Q(#ticket h2.tournament), text: tournament.name) }
 
   specify 'the ticket form' do
-    within %Q(#city form[action="#{tournament_tickets_path(tournament)}"][method="post"]) do |form|
+    within %Q(#ticket form[action="#{tournament_tickets_path(tournament)}"][method="post"]) do |form|
       form.should have_selector %Q(input[name="ticket[email]"][value="#{ticket.email}"][type="email"])
       form.should have_selector %Q(input[name="ticket[nickname]"][value="#{ticket.nickname}"][type="text"])
       form.should have_selector %Q(input[type="submit"])

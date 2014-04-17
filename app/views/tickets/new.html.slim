@@ -1,7 +1,6 @@
-#city
-  .city
-    == render partial: @ticket.tournament.city
-    h3= @ticket.tournament.name
+- current_city @ticket.tournament.city
+#ticket
+  h2.tournament= @ticket.tournament.name
   = simple_form_for [@ticket.tournament, @ticket] do |f|
     .form-inputs
       = f.input :email

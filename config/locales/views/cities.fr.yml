@@ -9,7 +9,8 @@ fr:
       what_about_my_city: 'Et ma ville ?'
       create_it: "Je l'ajoute !"
     show:
-      new_tournament: J'organise un tournois
+      my_tournament_html: 'Et&nbsp;mon&nbsp;tournois&nbsp;?'
+      new_tournament_html: "Je&nbsp;l'organise&nbsp;!"
       incoming_tournaments: Prochains tournois
       places:
         one: une place

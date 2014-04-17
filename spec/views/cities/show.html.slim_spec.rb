@@ -5,16 +5,16 @@ describe 'cities/show.html.slim' do
   before { create_list(:tournament, 3, city: city).map &:decorate }
   before { assign :city, city.reload }
 
+  before { expect(view).to receive(:current_city).with(city) }
+
   before { render }
 
   subject { rendered }
 
   it { should_not have_selector(%Q(.translation_missing)) }
 
-  describe 'the city' do
-    it { should have_selector(%Q(#city .city h2), text: city.name) }
-    it { should have_selector(%Q(#city .city a[href="#{new_city_tournament_path(city)}"])) }
-  end
+  it { should have_selector(%Q(#city h2), text: city.name) }
+  it { should have_selector(%Q(#city .new-tournament a[href="#{new_city_tournament_path(city)}"])) }
 
   specify 'incoming tournaments' do
     within '#city .tournaments ul' do |list|

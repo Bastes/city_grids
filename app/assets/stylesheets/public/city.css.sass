@@ -1,6 +1,9 @@
 #city
   @include grid-row()
-  .city
-    @extend .large-3, .medium-3, .small-12, .columns
+  h2
+    @include grid-column(12)
   .tournaments
-    @extend .large-9, .medium-9, .small-12, .columns
+    @extend .large-8, .medium-8, .small-12, .columns
+  .new-tournament
+    text-align: center
+    @extend .large-4, .medium-4, .small-12, .columns

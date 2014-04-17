@@ -1,5 +1,7 @@
-#city
-  .city== render partial: @tournament.city
+- current_city @tournament.city
+#tournament
+  h2.city= @tournament.city.name
+
   = simple_form_for [@tournament.city, @tournament] do |f|
     h3= t '.new_tournament'
 
