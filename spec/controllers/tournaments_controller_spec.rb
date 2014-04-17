@@ -86,27 +86,62 @@ describe TournamentsController do
   end
 
   describe 'GET "activate"' do
-    let(:tournament) { create :tournament, :awaiting_activation }
     subject(:the_query) { -> { get 'activate', id: tournament.id, a: admin } }
 
-    context 'with the right admin token' do
-      let(:admin) { tournament.admin }
+    context 'the tournament was pending' do
+      let(:tournament) { create :tournament, :awaiting_activation }
 
-      it { should change { tournament.reload.activated }.to true }
+      context 'with the right admin token' do
+        let(:admin) { tournament.admin }
 
-      describe 'after the query' do
-        before { the_query.call }
+        before { expect(TournamentMailer).to receive(:administration).with(an_instance_of(Tournament)).and_return(double().tap { |d| expect(d).to receive(:deliver) }) }
 
-        it { expect(response).to redirect_to tournament.city }
-        it { expect(flash[:notice]).not_to be_nil }
+        it { should change { tournament.reload.activated }.to true }
+
+        describe 'after the query' do
+          before { the_query.call }
+
+          it { expect(response).to redirect_to tournament }
+          it { expect(flash[:notice]).not_to be_nil }
+        end
+      end
+
+      context 'without the right admin token' do
+        let(:admin) { tournament.admin + ' oups' }
+
+        before { expect(TournamentMailer).not_to receive(:administration) }
+
+        it { should raise_error ActionController::RoutingError }
+        it { expect(-> { the_query.call rescue nil }).not_to change { tournament.reload.activated } }
       end
     end
 
-    context 'without the right admin token' do
-      let(:admin) { tournament.admin + ' oups' }
+    context 'the tournament was already activated' do
+      let(:tournament) { create :tournament, :activated }
 
-      it { should raise_error ActionController::RoutingError }
-      it { expect(-> { the_query.call rescue nil }).not_to change { tournament.reload.activated } }
+      context 'with the right admin token' do
+        let(:admin) { tournament.admin }
+
+        before { expect(TournamentMailer).not_to receive(:administration) }
+
+        it { should_not change { tournament.reload.updated_at } }
+
+        describe 'after the query' do
+          before { the_query.call }
+
+          it { expect(response).to redirect_to tournament }
+          it { expect(flash[:notice]).to be_nil }
+        end
+      end
+
+      context 'without the right admin token' do
+        let(:admin) { tournament.admin + ' whoot!!' }
+
+        before { expect(TournamentMailer).not_to receive(:administration) }
+
+        it { should raise_error ActionController::RoutingError }
+        it { expect(-> { the_query.call rescue nil }).not_to change { tournament.reload.activated } }
+      end
     end
   end
 end

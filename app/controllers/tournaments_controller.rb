@@ -18,9 +18,12 @@ class TournamentsController < ApplicationController
   def activate
     tournament = Tournament.find params[:id]
     if tournament.admin == params[:a]
-      tournament.update_attributes activated: true
-      flash[:notice] = I18n.t 'flash.tournaments.activate.notice'
-      redirect_to tournament.city
+      unless tournament.activated
+        tournament.update_attributes activated: true
+        flash[:notice] = I18n.t 'flash.tournaments.activate.notice'
+        TournamentMailer.administration(tournament).deliver
+      end
+      redirect_to tournament
     else
       raise ActionController::RoutingError.new('Not Found')
     end

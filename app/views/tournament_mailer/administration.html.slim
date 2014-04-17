@@ -1,0 +1,10 @@
+p= t '.hello', nickname: @tournament.organizer_nickname
+
+p= t '.your_tournament_is_active', name: @tournament.name, date: I18n.l(@tournament.begins_at.to_date, format: :long)
+
+p
+  = t '.your_administration_url'
+  br
+  == link_to tournament_url(@tournament, a: @tournament.admin), tournament_url(@tournament, a: @tournament.admin)
+
+p= t '.keep_secret'

@@ -1,0 +1,9 @@
+= t '.hello', nickname: @tournament.organizer_nickname
+= "\n\n"
+= t '.your_tournament_is_active', name: @tournament.name, date: I18n.l(@tournament.begins_at.to_date, format: :long)
+= "\n\n"
+= t '.your_administration_url'
+= "\n"
+== tournament_url @tournament, a: @tournament.admin
+= "\n\n"
+= t '.keep_secret'
