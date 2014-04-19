@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe TicketMailer do
-  describe '#validation' do
+  describe '#activation' do
     let(:ticket) { create :ticket }
     subject(:mail) { TicketMailer.activation ticket }
 

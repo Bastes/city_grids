@@ -5,5 +5,10 @@ FactoryGirl.define do
 
   factory :city do
     sequence(:name) { |n| "#{city_names.sample} ##{n}" }
+    email           'uninteresting@email.com'
+    activated       true
+
+    trait(:pending)   { activated false }
+    trait(:activated) { activated true }
   end
 end

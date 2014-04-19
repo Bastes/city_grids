@@ -11,14 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140416095748) do
+ActiveRecord::Schema.define(version: 20140417220833) do
 
   create_table "cities", force: true do |t|
-    t.string   "name",       null: false
+    t.string   "name",                       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email"
+    t.string   "admin"
+    t.boolean  "activated",  default: false
   end
 
+  add_index "cities", ["activated"], name: "index_cities_on_activated", using: :btree
   add_index "cities", ["name"], name: "index_cities_on_name", unique: true, using: :btree
 
   create_table "tickets", force: true do |t|

@@ -4,6 +4,7 @@
   = simple_form_for @city do |f|
     .form-inputs
       = f.input :name
+      = f.input :email, as: :email
 
     .form-actions
       = f.button :submit

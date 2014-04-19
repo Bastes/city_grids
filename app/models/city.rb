@@ -2,5 +2,18 @@ class City < ActiveRecord::Base
   has_many :tournaments
   has_many :incoming_tournaments, -> { incoming.activated.ordered }, class_name: 'Tournament'
 
-  validates :name, presence: true, uniqueness: { case_sensitive: false }
+  validates :name,  presence: true
+  validates :email, presence: true, email: true
+
+  scope :activated, -> { where(activated: true) }
+
+  before_save :set_admin
+
+  def set_admin
+    self.admin ||= Digest::MD5.new.update("#{name}#{Time.now}").to_s
+  end
+
+  def self.find_by_name name
+    self.where('name ILIKE ?', name).first
+  end
 end

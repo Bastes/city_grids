@@ -7,10 +7,15 @@ fr:
       attributes:
         city:
           name: nom
+          name: email
   simple_form:
     labels:
       city:
-        name: Nom de ma ville
+        name: Nom de la ville
+        email: Votre addresse email
+    hints:
+      city:
+        email: Votre email ne ser jamais communiqué à un tiers ni utilisé à fins de prospection.
   helpers:
     submit:
       city:
@@ -18,4 +23,6 @@ fr:
   flash:
     cities:
       create:
+        notice: "Un email de confirmation vous a été envoyé. Cliquez sur le lien qu'il contient pour finaliser la création de votre ville."
+      activate:
         notice: "Votre ville est maintenant répertoriée."

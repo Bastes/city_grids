@@ -2,7 +2,7 @@ class CitiesController < ApplicationController
   responders :flash
 
   def index
-    @cities = City.includes(:incoming_tournaments).order(name: :asc)
+    @cities = City.activated.includes(:incoming_tournaments).order(name: :asc)
   end
 
   def show
@@ -14,13 +14,40 @@ class CitiesController < ApplicationController
   end
 
   def create
-    @city = City.create permitted_params
-    respond_with @city
+    @city = City.find_by_name(params[:city][:name])
+    if @city
+      if @city.activated
+        redirect_to @city
+      else
+        if @city.update_attributes email: params[:city][:email]
+          flash[:notice] = I18n.t 'flash.cities.create.notice'
+          CityMailer.activation(@city).deliver if @city.valid?
+          redirect_to root_path
+        else
+          respond_with @city = City.create(permitted_params)
+        end
+      end
+    else
+      @city = City.create permitted_params
+      CityMailer.activation(@city).deliver if @city.valid?
+      respond_with @city, location: root_path
+    end
+  end
+
+  def activate
+    city = City.find params[:id]
+    if city.admin == params[:a]
+      city.update_attributes activated: true
+      flash[:notice] = I18n.t 'flash.cities.activate.notice'
+      redirect_to city
+    else
+      raise ActionController::RoutingError.new('Not Found')
+    end
   end
 
   private
 
   def permitted_params
-    params.require(:city).permit(:name)
+    params.require(:city).permit(:name, :email)
   end
 end

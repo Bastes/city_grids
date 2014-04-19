@@ -1,0 +1,7 @@
+fr:
+  city_mailer:
+    activation:
+      subject: 'Activez votre ville %{name}'
+      hello: 'Bonjour,'
+      your_city_is_pending: 'Pour confirmer la création de votre ville %{name}, merci de visiter le lien suivant:'
+      activate_your_city: 'Activer votre ville'

@@ -7,4 +7,5 @@ describe 'cities routes' do
 
   let(:id) { rand 1..1000 }
   it { expect(get: "/cities/#{id}").to route_to('cities#show', id: id.to_s) }
+  it { expect(get: "/cities/#{id}/activate").to route_to('cities#activate', id: id.to_s) }
 end
