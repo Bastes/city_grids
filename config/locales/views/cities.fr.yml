@@ -13,5 +13,9 @@ fr:
       new_tournament_html: "Je&nbsp;l'organise&nbsp;!"
       incoming_tournaments: Prochains tournois
       places:
-        one: une place
-        other: '%{count} places'
+        all:
+          one: une place
+          other: '%{count} places'
+        taken:
+          one: un inscrit
+          other: '%{count} inscrits'

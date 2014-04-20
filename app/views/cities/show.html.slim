@@ -4,7 +4,7 @@
   .tournaments
     == render partial: 'layouts/flash'
     h3= t '.incoming_tournaments'
-    ul.no-bullet
+    ul
       - @city.incoming_tournaments.decorate.each do |tournament|
         li.tournament
           h4
@@ -12,7 +12,11 @@
               small.begins-on= l tournament.begins_at.to_date, format: :long
               span.name= tournament.name
           == link_to tournament.address, tournament.address_url, class: 'address', target: '_blank'
-          .places= t '.places', count: tournament.places
+          .places
+            - if tournament.places.present?
+              span.all= t '.places.all', count: tournament.places
+            - unless tournament.tickets.present.empty?
+              span.taken= t '.places.taken', count: tournament.tickets.present.count
   .new-tournament
     h3= t '.my_tournament_html'
     == link_to t('.new_tournament_html'), [:new, @city, :tournament], class: 'button'

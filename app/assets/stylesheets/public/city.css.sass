@@ -4,6 +4,13 @@
     @include grid-column(12)
   .tournaments
     @extend .large-8, .medium-8, .small-12, .columns
+    ul
+      @extend .no-bullet
+      li.tournament
+        .places
+          .all + .taken
+            &:before
+              content: ' - '
   .new-tournament
     text-align: center
     @extend .large-4, .medium-4, .small-12, .columns
