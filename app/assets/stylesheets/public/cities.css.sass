@@ -1,13 +1,12 @@
 #cities
-  @include grid-row()
   ul.cities
-    @include grid-column(12)
-    @media #{$medium-only}
-      @include block-grid(2)
-    @media #{$large-up}
-      @include block-grid(3)
+    @include grid-row()
     @extend .no-bullet
     > li
+      @extend .small-12, .medium-6, .large-4, .column
+      float: none
+      display: inline-block
+      vertical-align: top
       margin-bottom: 1rem
       ul.tournaments
         @extend .no-bullet
