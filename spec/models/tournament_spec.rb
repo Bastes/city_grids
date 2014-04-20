@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Tournament do
   describe 'associations' do
     it { should belong_to :city }
-    it { should have_many :tickets }
+    it { should have_many(:tickets).dependent(:destroy) }
   end
 
   describe 'validations' do

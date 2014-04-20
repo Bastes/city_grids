@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe City do
   describe 'associations' do
-    it { should have_many :tournaments }
+    it { should have_many(:tournaments).dependent(:destroy) }
 
     describe '#incoming_tournaments' do
       subject(:city) { create :city }
