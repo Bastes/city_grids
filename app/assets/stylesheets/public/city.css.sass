@@ -6,11 +6,18 @@
     @extend .large-8, .medium-8, .small-12, .columns
     ul
       @extend .no-bullet
+      @media #{$large-up}
+        @include block-grid(2)
       li.tournament
+        h4
+          white-space: nowrap
+          overflow: hidden
+          text-overflow: ellipsis
         .places
           .all + .taken
             &:before
               content: ' - '
   .new-tournament
-    text-align: center
     @extend .large-4, .medium-4, .small-12, .columns
+    @media #{$medium-up}
+      text-align: center
