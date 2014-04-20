@@ -41,8 +41,7 @@ describe 'cities/index.html.slim' do
   context 'too many incoming tournaments for a city' do
     let(:city) { create :city }
     before { [1,5,7,3,4,0].each { |n| create :tournament, city: city, begins_at: n.days.from_now } }
-    before { city.reload }
-    before { assign :cities, [city] }
+    before { assign :cities, [city.reload] }
 
     before { render }
 

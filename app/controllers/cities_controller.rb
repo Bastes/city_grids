@@ -6,7 +6,7 @@ class CitiesController < ApplicationController
   end
 
   def show
-    @city = City.find params[:id]
+    @city = City.includes(incoming_tournaments: :present_tickets).find params[:id]
   end
 
   def new

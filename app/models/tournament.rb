@@ -1,6 +1,7 @@
 class Tournament < ActiveRecord::Base
   belongs_to :city
   has_many :tickets, dependent: :destroy
+  has_many :present_tickets, -> { present }, class_name: 'Ticket'
 
   validates :city,               presence: true
   validates :organizer_nickname, presence: true

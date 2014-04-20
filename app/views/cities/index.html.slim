@@ -5,12 +5,12 @@
         h2== link_to city.name, city
         - unless city.incoming_tournaments.blank?
           ul.tournaments
-            - city.incoming_tournaments.take(3).each do |tournament|
+            - city.incoming_tournaments.to_a.take(3).each do |tournament|
               li.tournament
                 small.begins-on= l tournament.begins_at.to_date
                 == link_to tournament.name, tournament, class: 'name'
-            - if city.incoming_tournaments.count > 3
-              li.more== link_to t('.more_tournaments', count: city.incoming_tournaments.count - 3), city
+            - if city.incoming_tournaments.size > 3
+              li.more== link_to t('.more_tournaments', count: city.incoming_tournaments.size - 3), city
     li.new-city
       h2= t '.what_about_my_city'
       == link_to t('.create_it'), new_city_path, class: 'button'

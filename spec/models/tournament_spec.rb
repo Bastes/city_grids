@@ -4,6 +4,15 @@ describe Tournament do
   describe 'associations' do
     it { should belong_to :city }
     it { should have_many(:tickets).dependent(:destroy) }
+
+    describe '#present_tickets' do
+      subject(:tournament) { create :tournament }
+      let!(:present_tickets) { create_list :ticket, 3, tournament: tournament }
+      before { create_list :ticket, 2, tournament: tournament, status: 'pending' }
+      before { create_list :ticket, 2, tournament: tournament, status: 'forfeit' }
+
+      its(:present_tickets) { should match_array present_tickets }
+    end
   end
 
   describe 'validations' do
