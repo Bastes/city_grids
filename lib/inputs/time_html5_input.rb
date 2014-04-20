@@ -1,10 +1,10 @@
 class TimeHtml5Input < SimpleForm::Inputs::StringInput
+  enable :placeholder
+
   def input_html_options
-    value = object.send(attribute_name)
-    options = {
-      value: value,
+    super.merge options.merge({
+      value: object.send(attribute_name),
       type: 'time'
-    }
-    super.merge options
+    })
   end
 end

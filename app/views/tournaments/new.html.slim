@@ -11,8 +11,8 @@
       = f.input :name
       = f.input :address
       = f.input :begins_at_date, as: :date_html5, required: true
-      = f.input :begins_at_time, as: :time_html5, required: true
-      = f.input :ends_at_time,   as: :time_html5
+      = f.input :begins_at_time, as: :time_html5, required: true, placeholder: I18n.t('simple_form.placeholders.tournament.begins_at_time')
+      = f.input :ends_at_time,   as: :time_html5, placeholder: I18n.t('simple_form.placeholders.tournament.ends_at_time')
       = f.input :places
       = f.input :abstract
 

@@ -30,6 +30,8 @@ fr:
     placeholders:
       tournament:
         address: "ex: 5 Avenue Anatole France, 75007 Paris"
+        begins_at_time: 'ex: 11:00'
+        ends_at_time: 'ex: 19:00'
     hints:
       tournament:
         organizer_email: Votre email ne sera jamais communiqué à un tiers ni utilisé à fins de prospection.
