@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe 'tournaments/show.html.slim' do
   let(:raw_tournament) { create :tournament }
-  let!(:present_tickets) { create_list :ticket, 3, :present, tournament: raw_tournament }
-  before { create_list :ticket, 2, :pending, tournament: raw_tournament }
-  before { create_list :ticket, 1, :forfeit, tournament: raw_tournament }
+  let!(:present_tickets) { create_list :ticket, rand(1..5), :present, tournament: raw_tournament }
+  let!(:pending_tickets) { create_list :ticket, rand(1..5), :pending, tournament: raw_tournament }
+  let!(:forfeit_tickets) { create_list :ticket, rand(1..5), :forfeit, tournament: raw_tournament }
   let(:tournament) { raw_tournament.reload.decorate }
   let(:city)       { tournament.city }
   before { assign :tournament, tournament }
@@ -33,7 +33,7 @@ describe 'tournaments/show.html.slim' do
   end
 
   specify 'the tickets list' do
-    within %Q(#tournament .participants) do |item|
+    within %Q(#tournament .participants .present) do |item|
       item.should have_selector %Q(h3 .places .all),   text: tournament.places
       item.should have_selector %Q(h3 .places .taken), text: present_tickets.count
       within item, %Q(ul.tickets) do |list|
@@ -61,8 +61,8 @@ describe 'tournaments/show.html.slim' do
   context 'no participants (yet)' do
     let!(:present_tickets) { nil }
 
-    it { should_not have_selector %(#tournament ul.tickets) }
-    it { should have_selector %(#tournament .be-the-first) }
+    it { should_not have_selector %(#tournament .participants .present ul.tickets) }
+    it { should have_selector %(#tournament .participants .present .be-the-first) }
   end
 
   context 'the tournament is over' do
@@ -76,12 +76,35 @@ describe 'tournaments/show.html.slim' do
       let(:admin) { true }
 
       it { should have_selector %Q(#tournament a[href="#{edit_tournament_path(tournament, a: tournament.admin)}"]) }
+
+      describe  'the forfeit tickets list' do
+        context 'with forfeits' do
+          specify do
+            within %Q(#tournament .participants .forfeits) do |item|
+              item.should have_selector %Q(h3), text: I18n.t('tournaments.show.forfeits', count: forfeit_tickets.count)
+              within item, %Q(ul.tickets) do |list|
+                list.should have_selector %Q(li), count: forfeit_tickets.count
+                tournament.tickets.forfeit.each_with_index do |ticket, index|
+                  list.should have_selector %Q(li:nth-child(#{index + 1})), text: ticket.nickname
+                end
+              end
+            end
+          end
+        end
+
+        context 'without forfeit' do
+          let!(:forfeit_tickets) { [] }
+
+          it { should_not have_selector %Q(#tournament .participants .forfeits)  }
+        end
+      end
     end
 
     context 'visitor' do
       let(:admin) { false }
 
       it { should_not have_selector %Q(#tournament a[href="#{edit_tournament_path(tournament, a: tournament.admin)}"]) }
+      it { should_not have_selector %Q(#tournament .participants .forfeits) }
     end
   end
 end

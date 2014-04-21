@@ -14,12 +14,14 @@
           content: ' - '
   .participants
     @extend .large-4, .medium-6, .small-12, .columns
-    h3
-      .places
-        &:before
-          content: ' ('
-        &:after
-          content: ')'
-        .all
+    .present,
+    .forfeits
+      h3
+        .places
           &:before
-            content: ' / '
+            content: ' ('
+          &:after
+            content: ')'
+          .all
+            &:before
+              content: ' / '

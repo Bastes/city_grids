@@ -26,6 +26,14 @@ describe Ticket do
 
       it { expect(Ticket.present).to match_array present_tickets }
     end
+
+    describe '#forfeit' do
+      let!(:forfeit_tickets) { create_list :ticket, 3, :forfeit }
+      before { create_list :ticket, 2, :present }
+      before { create_list :ticket, 1, :pending }
+
+      it { expect(Ticket.forfeit).to match_array forfeit_tickets }
+    end
   end
 
   describe '#initialize' do

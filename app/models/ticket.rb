@@ -9,6 +9,7 @@ class Ticket < ActiveRecord::Base
   validates :status,     presence: true, inclusion: {in: STATUS_VALUES}
 
   scope :present, -> { where(status: 'present') }
+  scope :forfeit, -> { where(status: 'forfeit') }
 
   before_save :set_admin
 

@@ -16,17 +16,25 @@
       == link_to @tournament.address, @tournament.address_url, class: 'address', target: '_blank'
     .abstract= simple_format @tournament.abstract
   .participants
-    h3
-      = t '.participants'
-      small.places
-        span.taken= @tournament.tickets.present.count
-        - if @tournament.places?
-          span.all= @tournament.places
-    - if @tournament.tickets.present.empty?
-      p.be-the-first= t '.be_the_first'
-    - else
-      ul.tickets
-        - @tournament.tickets.present.each do |ticket|
-          li= ticket.nickname
-    - if @tournament.begins_at.to_date >= Date.today
-      == link_to t('.jack_in'), new_tournament_ticket_path(@tournament), class: 'button'
+    .present
+      h3
+        = t '.participants'
+        small.places
+          span.taken= @tournament.tickets.present.count
+          - if @tournament.places?
+            span.all= @tournament.places
+      - if @tournament.tickets.present.empty?
+        p.be-the-first= t '.be_the_first'
+      - else
+        ul.tickets
+          - @tournament.tickets.present.each do |ticket|
+            li= ticket.nickname
+      - if @tournament.begins_at.to_date >= Date.today
+        == link_to t('.jack_in'), new_tournament_ticket_path(@tournament), class: 'button'
+    - if admin? && @tournament.tickets.forfeit.any?
+      .forfeits
+        h3
+          = t '.forfeits', count: @tournament.tickets.forfeit.count
+        ul.tickets
+          - @tournament.tickets.forfeit.each do |ticket|
+            li= ticket.nickname

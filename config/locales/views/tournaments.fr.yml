@@ -7,6 +7,9 @@ fr:
       be_the_first: "Soyez le premier !"
       admin:
         edit: éditer
+      forfeits:
+        one: 'Un abandon'
+        other: '%{count} abandons'
     new:
       new_tournament: Nouveau tournois
     edit:
