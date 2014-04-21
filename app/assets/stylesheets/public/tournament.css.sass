@@ -7,13 +7,17 @@
   h2
     @include grid-column(12)
   .itself
-    @extend .large-8, .medium-6, .small-12, .columns
+    @extend .large-8, .medium-7, .small-12, .columns
     .timeframe
       .ends-at
         &:before
           content: ' - '
   .participants
-    @extend .large-4, .medium-6, .small-12, .columns
+    @extend .large-4, .medium-5, .small-12, .columns
+    .present
+      @extend .panel, .callout
+    .forfeits
+      @include panel()
     .present,
     .forfeits
       h3
