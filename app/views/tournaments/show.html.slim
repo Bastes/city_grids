@@ -7,7 +7,7 @@
   .itself
     p
       span.timeframe
-        span.begins-at= l @tournament.begins_at, format: :long
+        span.begins-at= l(@tournament.begins_at, format: :long).capitalize
         - if @tournament.ends_at?
           span.ends-at= l @tournament.ends_at, format: :time_of_day
       br
