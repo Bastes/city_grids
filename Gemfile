@@ -59,6 +59,7 @@ gem 'responders'
 gem 'asset_sync'
 gem 'bourbon'
 gem 'rails_autolink'
+gem 'google-analytics-turbolinks'
 
 group :development do
   gem 'better_errors'

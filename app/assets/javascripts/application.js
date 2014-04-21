@@ -15,6 +15,7 @@
 //= require jquery.ui.datepicker
 //= require foundation
 //= require turbolinks
+//= require google-analytics-turbolinks
 //= require_tree ./public
 
 $(function(){ $(document).foundation(); });
