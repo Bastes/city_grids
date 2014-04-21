@@ -16,7 +16,7 @@ describe 'cities/index.html.slim' do
     specify 'the cities list' do
       within '#cities ul.cities' do |cities_list|
         cities.each_with_index do |city, i|
-          within cities_list, %Q(> li:nth-child(#{i + 1})) do |city_item|
+          within cities_list, %Q(> li:nth-child(#{i + 1}) .city) do |city_item|
             city_item.should have_selector %Q(h2 a[href="#{view.city_path(city)}"]), text: city.name
             if city.incoming_tournaments.count == 0
               city_item.should_not have_selector %Q(ul.incoming_tournaments)
@@ -50,7 +50,7 @@ describe 'cities/index.html.slim' do
     it { should_not have_selector(%Q(.translation_missing)) }
 
     specify 'the tournaments list' do
-      within '#cities ul.cities li ul.tournaments:first' do |tournaments_list|
+      within '#cities ul.cities li .city ul.tournaments:first' do |tournaments_list|
         tournaments_list.should have_selector %Q(li), count: 4
         city.incoming_tournaments.take(3).each_with_index do |tournament, j|
           within tournaments_list, %Q(li:nth-child(#{j + 1})) do |tournament_item|

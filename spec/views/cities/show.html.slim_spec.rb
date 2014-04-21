@@ -23,7 +23,7 @@ describe 'cities/show.html.slim' do
         within list, %Q(li:nth-child(#{i + 1})) do |item|
           within item, %Q(h4 a[href="#{tournament_path(tournament)}"]) do |link|
             link.should have_selector %Q(.name), text: tournament.name
-            link.should have_selector %Q(.begins-on), text: I18n.l(tournament.begins_at.to_date, format: :long)
+            link.should have_selector %Q(.begins-on), text: I18n.l(tournament.begins_at.to_date)
           end
           item.should have_selector %Q(a.address[href="#{tournament.address_url}"][target="_blank"]), text: tournament.address
           item.should have_selector %Q(.places .all),   text: I18n.t('cities.show.places.all', count: tournament.places)

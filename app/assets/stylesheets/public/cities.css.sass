@@ -7,12 +7,34 @@
       float: none
       display: inline-block
       vertical-align: top
-      margin-bottom: 1rem
-      ul.tournaments
-        @extend .no-bullet
-        li
-          white-space: nowrap
-          overflow: hidden
-          text-overflow: ellipsis
-          &.more
-            margin-top: .6em
+      margin-top: 2rem
+      .city
+        @include panel()
+        border-radius: 1em
+        box-shadow: 0 5px 4px -4px #444
+        cursor: pointer
+        h2
+          font-size: rem-calc(23)
+          a
+            color: scale-color($header-font-color, $lightness: 50%)
+            @include transition(color .2s ease-in-out, background-color .2s ease-in-out)
+        &:hover
+          background-color: scale-color($panel-bg, $lightness: 10%)
+          h2 a
+            color: $header-font-color
+        ul.tournaments
+          margin-top: 2em
+          @include panel($bg: #f9f9f9)
+          border-radius: .6em
+          @extend .no-bullet
+          li
+            white-space: nowrap
+            overflow: hidden
+            text-overflow: ellipsis
+            &.more
+              margin-top: .6em
+      &.new-city
+        text-align: center
+        h2
+          font-family: PolenticalNeon
+          color: scale-color($header-font-color, $lightness: 20%)

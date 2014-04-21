@@ -1,22 +1,22 @@
 - current_city @city
 #city
-  h2= @city.name
-  .tournaments
-    == render partial: 'layouts/flash'
-    h3= t '.incoming_tournaments'
-    ul
-      - @city.incoming_tournaments.each do |tournament|
-        li.tournament
-          h4
-            = link_to tournament do
-              small.begins-on= l tournament.begins_at.to_date, format: :long
-              span.name= tournament.name
-          == link_to tournament.decorate.address, tournament.decorate.address_url, class: 'address', target: '_blank'
-          .places
-            - if tournament.places.present?
-              span.all= t '.places.all', count: tournament.places
-            - if tournament.present_tickets.size > 0
-              span.taken= t '.places.taken', count: tournament.present_tickets.size
-  .new-tournament
-    h3= t '.my_tournament_html'
-    == link_to t('.new_tournament_html'), [:new, @city, :tournament], class: 'button'
+  .city
+    h2= @city.name
+    .tournaments
+      h3= t '.incoming_tournaments'
+      ul
+        - @city.incoming_tournaments.each do |tournament|
+          li.tournament
+            h4
+              = link_to tournament do
+                small.begins-on= l tournament.begins_at.to_date
+                span.name= tournament.name
+            == link_to tournament.decorate.address, tournament.decorate.address_url, class: 'address', target: '_blank'
+            .places
+              - if tournament.places.present?
+                span.all= t '.places.all', count: tournament.places
+              - if tournament.present_tickets.size > 0
+                span.taken= t '.places.taken', count: tournament.present_tickets.size
+    .new-tournament
+      h3= t '.my_tournament_html'
+      == link_to t('.new_tournament_html'), [:new, @city, :tournament], class: 'button'

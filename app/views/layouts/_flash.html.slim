@@ -1,5 +1,6 @@
-- flash.each do |type, message|
-  - if type == :notice
-    .alert-box.radius.success(data-alert)
-      = message
-      a.close(href="#") &times;
+.flash
+  - flash.each do |type, message|
+    - if type == :notice
+      .alert-box.success(data-alert)
+        = message
+        a.close(href="#") &times;

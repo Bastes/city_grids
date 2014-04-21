@@ -1,23 +1,36 @@
+.city
+  > h2
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
+
 #city
   @include grid-row()
-  h2
+  .city
     @include grid-column(12)
-  .tournaments
-    @extend .large-8, .medium-8, .small-12, .columns
-    ul
-      @extend .no-bullet
-      @media #{$large-up}
-        @include block-grid(2)
-      li.tournament
-        h4
-          white-space: nowrap
-          overflow: hidden
-          text-overflow: ellipsis
-        .places
-          .all + .taken
-            &:before
-              content: ' - '
-  .new-tournament
-    @extend .large-4, .medium-4, .small-12, .columns
-    @media #{$medium-up}
-      text-align: center
+    h2
+      @extend .hide-for-medium-up
+    .tournaments
+      @media #{$small-only}
+        @include grid-column($columns: 12, $collapse: true)
+      @media #{$medium-up}
+        @include grid-column($columns: 8, $collapse: true)
+      ul
+        @extend .no-bullet
+        li.tournament
+          margin-top: 1.5em
+          h4
+            white-space: nowrap
+            overflow: hidden
+            text-overflow: ellipsis
+          .places
+            .all + .taken
+              &:before
+                content: ' - '
+    .new-tournament
+      @media #{$small-only}
+        @include grid-column($columns: 12, $collapse: true)
+      @media #{$medium-up}
+        @include grid-column($columns: 4, $collapse: true)
+      @media #{$medium-up}
+        text-align: center
