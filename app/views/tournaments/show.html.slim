@@ -14,7 +14,7 @@
       span.organizer= t '.organized_by', name: @tournament.organizer_nickname
       br
       == link_to @tournament.address, @tournament.address_url, class: 'address', target: '_blank'
-    .abstract= simple_format @tournament.abstract
+    .abstract= auto_link simple_format(@tournament.abstract), link: :urls, html: {target: '_blank'}
   .participants
     .present
       h3

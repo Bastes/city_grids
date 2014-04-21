@@ -58,6 +58,7 @@ gem 'draper'
 gem 'responders'
 gem 'asset_sync'
 gem 'bourbon'
+gem 'rails_autolink'
 
 group :development do
   gem 'better_errors'
