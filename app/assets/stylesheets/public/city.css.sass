@@ -13,7 +13,9 @@
     .tournaments
       @media #{$small-only}
         @include grid-column($columns: 12, $collapse: true)
-      @media #{$medium-up}
+      @media #{$medium-only}
+        @include grid-column($columns: 7, $collapse: true)
+      @media #{$large-up}
         @include grid-column($columns: 8, $collapse: true)
       ul
         @extend .no-bullet
@@ -30,7 +32,8 @@
     .new-tournament
       @media #{$small-only}
         @include grid-column($columns: 12, $collapse: true)
-      @media #{$medium-up}
+      @media #{$medium-only}
+        @include grid-column($columns: 5, $collapse: true)
+      @media #{$large-up}
         @include grid-column($columns: 4, $collapse: true)
-      @media #{$medium-up}
         text-align: center
