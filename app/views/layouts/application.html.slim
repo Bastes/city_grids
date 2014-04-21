@@ -4,6 +4,10 @@ html
     meta charset="utf-8"
     meta name="viewport" content="width=device-width, initial-scale=1.0"
     title= t('.title')
+    == favicon_link_tag
+    link rel='apple-touch-icon' href="#{image_path("apple-touch-icon-57.png")}" width="57px" height="57px"
+    link rel='apple-touch-icon' href="#{image_path("apple-touch-icon-72.png")}" width="72px" height="72px"
+    link rel='apple-touch-icon' href="#{image_path("apple-touch-icon-114.png")}" width="114px" height="114px"
     == stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
     == javascript_include_tag "vendor/modernizr"
     == javascript_include_tag "application", "data-turbolinks-track" => true
