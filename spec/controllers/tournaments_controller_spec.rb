@@ -128,7 +128,7 @@ describe TournamentsController do
         context 'after the query' do
           before { the_query.call }
 
-          it { expect(response).to redirect_to tournament_path(tournament, a: tournament.admin) }
+          it { expect(response).to redirect_to tournament_path(tournament.reload, a: tournament.admin) }
           it { expect(flash[:notice]).not_to be_nil }
 
           describe '@tournament' do

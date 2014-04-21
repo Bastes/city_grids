@@ -47,4 +47,8 @@ class Tournament < ActiveRecord::Base
       end
     end
   end
+
+  def to_param
+    "#{id}--#{begins_at.to_date.to_param}--#{name.gsub(/<[^>]+>/, '').parameterize}"
+  end
 end

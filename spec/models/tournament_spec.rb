@@ -86,5 +86,11 @@ describe Tournament do
     end
   end
 
+  describe '#to_param' do
+    subject { create :tournament, name: 'SûprëMe-TOURnoy de_la: Morkitù' }
+
+    its(:to_param) { should eq %Q(#{subject.id}--#{subject.begins_at.to_date.to_param}--supreme-tournoy-de_la-morkitu) }
+  end
+
   it_behaves_like 'it generates automatically an admin token', with_hash_base: ->(instance, now) { "#{instance.name}#{now}" }
 end

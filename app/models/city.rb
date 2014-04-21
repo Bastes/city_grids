@@ -16,4 +16,8 @@ class City < ActiveRecord::Base
   def self.find_by_name name
     self.where('name ILIKE ?', name).first
   end
+
+  def to_param
+    "#{id}-#{name.gsub(/<[^>]+>/, '')}".parameterize
+  end
 end

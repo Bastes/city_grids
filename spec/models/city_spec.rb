@@ -42,5 +42,11 @@ describe City do
     it { expect(City.find_by_name(cities.map(&:name).inject(&:+))).to be_nil }
   end
 
+  describe '#to_param' do
+    subject { create :city, name: 'RêVe-Sur_LA < Garriguëtte' }
+
+    its(:to_param) { should eq %Q(#{subject.id}-reve-sur_la-garriguette) }
+  end
+
   it_behaves_like 'it generates automatically an admin token', with_hash_base: ->(instance, now) { "#{instance.name}#{now}" }
 end
