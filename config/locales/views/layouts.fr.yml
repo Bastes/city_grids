@@ -1,6 +1,8 @@
 fr:
   layouts:
     application:
-      title: City Grids
-    nav:
-      title: City Grids
+      title: Netrunner Tournaments
+    footer:
+      developed_by_html: "Développé par %{link}"
+      report_at_html: "Un bug, une flatterie, envie d'aller plus loin ? Parlez-m'en sur %{link}"
+      the_github_page: "la page GitHub du projet"
