@@ -4,5 +4,5 @@ fr:
       title: Netrunner Tournaments
     footer:
       developed_by_html: "Développé par %{link}"
-      report_at_html: "Un bug, une flatterie, envie d'aller plus loin ? Parlez-m'en sur %{link}"
-      the_github_page: "la page GitHub du projet"
+      report_at_html: "Un bug qui vous gratouille, une flatterie qui vous démange, envie de demander la lune ? Parlons-en sur %{link}"
+      the_github_page: "notre GitHub"
