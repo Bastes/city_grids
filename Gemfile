@@ -60,6 +60,7 @@ gem 'asset_sync'
 gem 'bourbon'
 gem 'rails_autolink'
 gem 'google-analytics-turbolinks'
+gem 'newrelic_rpm'
 
 group :development do
   gem 'better_errors'
