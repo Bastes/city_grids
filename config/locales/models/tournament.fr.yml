@@ -2,7 +2,7 @@ fr:
   activerecord:
     models:
       tournament:
-        one:   tournois
+        one:   tournoi
         other: tournois
       attributes:
         tournament:
@@ -18,15 +18,15 @@ fr:
   simple_form:
     labels:
       tournament:
-        name: Nom du tournois
-        address: Adresse du tournois
+        name: Nom du tournoi
+        address: Adresse du tournoi
         organizer_email: Votre adresse email
         organizer_nickname: Votre pseudo
         places: Nombre de places
-        begins_at_date: Date du tournois
-        begins_at_time: Début du tournois
-        ends_at_time: Fin du tournois
-        abstract: Informations sur le tournois
+        begins_at_date: Date du tournoi
+        begins_at_time: Début du tournoi
+        ends_at_time: Fin du tournoi
+        abstract: Informations sur le tournoi
     placeholders:
       tournament:
         address: "ex: 5 Avenue Anatole France, 75007 Paris"
@@ -34,20 +34,20 @@ fr:
         ends_at_time: 'ex: 19:00'
     hints:
       tournament:
-        organizer_email: Votre email ne sera jamais communiqué à un tiers ni utilisé à fins de prospection.
+        organizer_email: Votre adresse email ne sera jamais communiquée à un tiers ni utilisée à fins de prospection.
         address: Pour que le lien pointe la bonne adresse, pensez à indiquer la commune et le code postal.
         places: Le nombre de places est indicatif et ne limite pas le nombre d'inscrit.
         abstract: Set de cartes autorisés, etc.
   helpers:
     submit:
       tournament:
-        create: Créer mon tournois
-        update: Modifier mon tournois
+        create: Créer mon tournoi
+        update: Modifier mon tournoi
   flash:
     tournaments:
       create:
-        notice: "Un email d'activation vous a été envoyé. Cliquez sur le lien qu'il contient pour activer votre tournois."
+        notice: "Un email d'activation vous a été envoyé. Cliquez sur le lien qu'il contient pour activer votre tournoi."
       activate:
-        notice: "Votre tournois est activé ! Vous recevrez bientôt un email contenant votre url d'administration confidentielle."
+        notice: "Votre tournoi est activé ! Vous recevrez bientôt un email contenant votre url d'administration confidentielle."
       update:
-        notice: "Votre tournois est mis à jour."
+        notice: "Votre tournoi est mis à jour."

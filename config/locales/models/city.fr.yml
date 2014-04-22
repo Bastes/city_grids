@@ -12,10 +12,10 @@ fr:
     labels:
       city:
         name: Nom de la ville
-        email: Votre addresse email
+        email: Votre adresse email
     hints:
       city:
-        email: Votre email ne ser jamais communiqué à un tiers ni utilisé à fins de prospection.
+        email: Votre adresse email ne sera jamais communiquée à un tiers ni utilisée à fins de prospection.
   helpers:
     submit:
       city:

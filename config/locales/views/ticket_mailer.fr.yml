@@ -1,9 +1,9 @@
 fr:
   ticket_mailer:
     activation:
-      subject: 'Confirmez votre participation au tournois du %{date} "%{name}"'
+      subject: 'Confirmez votre participation au tournoi du %{date} "%{name}"'
       hello: 'Bonjour %{nickname}'
-      your_participation_is_pending: 'Pour confirmer votre pariticipation au tournois du %{date} "%{name}", merci de visiter le lien suivant:'
+      your_participation_is_pending: 'Pour confirmer votre pariticipation au tournoi du %{date} "%{name}", merci de visiter le lien suivant:'
       confirm_your_participation: 'Confirmer votre participation'
       to_forfeit: 'Pour annuler votre inscription, merci de visiter le lien suivant:'
       forfeit: 'Annuler ma participation'

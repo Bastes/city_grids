@@ -11,6 +11,6 @@ fr:
         one: 'Un abandon'
         other: '%{count} abandons'
     new:
-      new_tournament: Nouveau tournois
+      new_tournament: Nouveau tournoi
     edit:
-      edit_tournament: Editer votre tournois
+      edit_tournament: Editer votre tournoi

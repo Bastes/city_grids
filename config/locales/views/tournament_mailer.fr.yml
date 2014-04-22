@@ -1,13 +1,13 @@
 fr:
   tournament_mailer:
     activation:
-      subject: 'Activez votre tournois Netrunner du %{date} "%{name}"'
+      subject: 'Activez votre tournoi Netrunner du %{date} "%{name}"'
       hello: 'Bonjour %{nickname},'
-      your_tournament_awaits: 'Pour activer votre tournois du %{date} "%{name}", merci de visiter le lien suivant:'
-      activate_your_tournament: 'Activer votre tournois'
+      your_tournament_awaits: 'Pour activer votre tournoi du %{date} "%{name}", merci de visiter le lien suivant:'
+      activate_your_tournament: 'Activer votre tournoi'
     administration:
-      subject: 'Administrez votre tournois Netrunner du %{date} "%{name}"'
+      subject: 'Administrez votre tournoi Netrunner du %{date} "%{name}"'
       hello: 'Bonjour %{nickname},'
-      your_tournament_is_active: 'Votre tournois du %{date} "%{name}" est maintenant activé.'
+      your_tournament_is_active: 'Votre tournoi du %{date} "%{name}" est maintenant activé.'
       your_administration_url: "Vous pouvez à tout moment voir consulter la liste des inscrits ou le modifier en vous rendant à l'url suivante:"
-      keep_secret: "Cette url n'est pas l'url publique de votre tournois. Ne la partagez si nécessaire qu'avec les autres organisateurs de votre tournois."
+      keep_secret: "Cette url n'est pas l'url publique de votre tournoi. Ne la partagez si nécessaire qu'avec les autres organisateurs de votre tournoi."

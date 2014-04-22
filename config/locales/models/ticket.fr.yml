@@ -15,7 +15,7 @@ fr:
         nickname: Votre pseudo
     hints:
       ticket:
-        email: Votre email ne sera jamais communiqué à un tiers ni utilisé à fins de prospection.
+        email: Votre adresse email ne sera jamais communiquée à un tiers ni utilisée à fins de prospection.
   helpers:
     submit:
       ticket:
@@ -23,8 +23,8 @@ fr:
   flash:
     tickets:
       create:
-        notice: "Un email de confirmation vous a été envoyé. Cliquez sur le lien qu'il contient pour confirmer votre participation au tournois."
+        notice: "Un email de confirmation vous a été envoyé. Cliquez sur le lien qu'il contient pour confirmer votre participation au tournoi."
       activate:
-        notice: "Votre inscription au tournois est validée ! Merci et bonne chance !"
+        notice: "Votre inscription au tournoi est validée ! Merci et bonne chance !"
       forfeit:
-        notice: "Votre inscription au tournois est annulée. Merci."
+        notice: "Votre inscription au tournoi est annulée. Merci."
