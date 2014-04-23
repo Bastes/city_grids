@@ -27,6 +27,7 @@ describe 'tournaments/show.html.slim' do
         itself.should have_selector %Q(.timeframe .begins-at), text: I18n.l(tournament.begins_at, format: :long).capitalize
         itself.should have_selector %Q(.timeframe .ends-at), text: I18n.l(tournament.ends_at, format: :time_of_day)
         itself.should have_selector %Q(a.address[href="#{tournament.address_url}"][target="_blank"]), text: tournament.address
+        itself.should have_selector %Q(a.address_map[href="#{tournament.address_url}"][target="_blank"] img[src="#{tournament.address_map_url}"])
         itself.should have_selector %Q(.abstract), text: tournament.abstract
       end
     end

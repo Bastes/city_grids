@@ -14,6 +14,8 @@
       span.organizer= t '.organized_by', name: @tournament.organizer_nickname
       br
       == link_to @tournament.address, @tournament.address_url, class: 'address', target: '_blank'
+    == link_to @tournament.address_url, class: 'address_map', target: '_blank' do
+      ==  image_tag(@tournament.address_map_url, alt: @tournament.address)
     .abstract= auto_link simple_format(@tournament.abstract), link: :urls, html: {target: '_blank'}
   .participants
     .present
