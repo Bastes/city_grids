@@ -1,4 +1,6 @@
 footer
   .content
+    .run4games
+      = t '.on_run4games_html', link: link_to(image_tag('run4games.jpg', alt: 'Run4Games'), 'http://run4games.com/', target: '_blank')
     .developed-by= t '.developed_by_html', link: link_to('@Bastes', 'https://twitter.com/Bastes', target: '_blank')
     .report-at= t '.report_at_html', link: link_to(t('.the_github_page'), 'https://github.com/Bastes/city_grids/issues', target: '_blank')
