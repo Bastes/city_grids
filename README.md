@@ -2,11 +2,12 @@
 
 # Getting Started
 
-0. Supposing you already:
-  * have installed the proper ruby version (as per Gemfile specification)
-  * have cloned this repository
-  * have installed a postgresql server and configured a user
-  * are typing commnds at your clone's root
+Supposing you already:
+* have installed the proper ruby version (as per Gemfile specification)
+* have cloned this repository
+* have installed a postgresql server and configured a user
+* are typing commnds at your clone's root
+
 1. Install the gems (using bundler):
   * install bundler (unless you've already got it):
 
