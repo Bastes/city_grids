@@ -1,9 +1,11 @@
-= t '.hello', nickname: @tournament.organizer_nickname
+== t '.hello', nickname: @tournament.organizer_nickname
 = "\n\n"
-= t '.your_tournament_is_active', name: @tournament.name, date: I18n.l(@tournament.begins_at.to_date, format: :long)
+== t '.your_tournament_is_active', name: @tournament.name, date: I18n.l(@tournament.begins_at.to_date, format: :long)
 = "\n\n"
-= t '.your_administration_url'
+== t '.your_administration_url'
 = "\n"
 == tournament_url @tournament, a: @tournament.admin
 = "\n\n"
-= t '.keep_secret'
+== t '.post_on_run4games', link: (t('.run4games') + ' (http://www.run4games.com/forum/)')
+= "\n\n"
+== t '.keep_secret'

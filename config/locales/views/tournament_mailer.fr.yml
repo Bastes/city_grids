@@ -9,5 +9,7 @@ fr:
       subject: 'Administrez votre tournoi Netrunner du %{date} "%{name}"'
       hello: 'Bonjour %{nickname},'
       your_tournament_is_active: 'Votre tournoi du %{date} "%{name}" est maintenant activé.'
-      your_administration_url: "Vous pouvez à tout moment voir consulter la liste des inscrits ou le modifier en vous rendant à l'url suivante:"
-      keep_secret: "Cette url n'est pas l'url publique de votre tournoi. Ne la partagez si nécessaire qu'avec les autres organisateurs de votre tournoi."
+      your_administration_url: "Conservez le lien suivant, il vous permettra à tout moment de consulter la liste des inscrits ou de modifier les informations de votre tournoi :"
+      keep_secret: "Cette lien n'est pas un accès publique à votre tournoi. Ne le partagez si nécessaire qu'avec les autres organisateurs de votre tournoi."
+      post_on_run4games: "Pour rendre votre tournoi plus visble, n'oubliez pas de le poster %{link}"
+      run4games: "sur le forum de Run4Games"
