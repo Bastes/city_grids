@@ -42,6 +42,17 @@ Supposing you already:
     $ foreman start
     ```
 4. There is no 4th step, you're up and running. Yoohoo ^^
+5. There might be a 5th step though. If you want to read sent emails in dev
+   mode as if you had sent and received them, you can install the mailcatcher
+   gem and run it:
+   ```
+   $ gem install mailcatcher
+   $ mailcatcher
+   ```
+   You can then see emails caught on http://localhost:1080
+   This gem won't make it to the gemfile because the chances of conflicting
+   with others are high and it isn't needed as a ruby dependency (it all talks
+   through smtp). More infos on https://github.com/sj26/mailcatcher
 
 # Running the specs
 
