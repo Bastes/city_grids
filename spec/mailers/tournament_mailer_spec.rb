@@ -17,6 +17,7 @@ describe TournamentMailer do
         it { should match %r{#{Regexp.escape tournament.organizer_nickname}} }
         it { should match %r{#{Regexp.escape tournament.name}} }
         it { should match %r{#{Regexp.escape I18n.l(tournament.begins_at.to_date, format: :long)}} }
+        it { should_not have_selector(%Q(.translation_missing)) }
       end
     end
 
@@ -49,6 +50,7 @@ describe TournamentMailer do
         it { should match %r{#{Regexp.escape tournament.organizer_nickname}} }
         it { should match %r{#{Regexp.escape tournament.name}} }
         it { should match %r{#{Regexp.escape I18n.l(tournament.begins_at.to_date, format: :long)}} }
+        it { should_not have_selector(%Q(.translation_missing)) }
       end
     end
 

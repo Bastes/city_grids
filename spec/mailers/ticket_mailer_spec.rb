@@ -17,6 +17,7 @@ describe TicketMailer do
         it { should match %r{#{Regexp.escape ticket.nickname}} }
         it { should match %r{#{Regexp.escape ticket.tournament.name}} }
         it { should match %r{#{Regexp.escape I18n.l(ticket.tournament.begins_at.to_date, format: :long)}} }
+        it { should_not have_selector(%Q(.translation_missing)) }
       end
     end
 

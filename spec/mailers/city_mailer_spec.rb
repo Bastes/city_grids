@@ -14,6 +14,7 @@ describe CityMailer do
         subject { message_part mail, part }
 
         it { should match %r{#{Regexp.escape city.name}} }
+        it { should_not have_selector(%Q(.translation_missing)) }
       end
     end
 
