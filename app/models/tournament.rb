@@ -10,6 +10,8 @@ class Tournament < ActiveRecord::Base
   validates :address,            presence: true
   validates :begins_at,          presence: true
   validates :ends_at,            timing: { after: :begins_at }, allow_blank: true
+  validates :places,             numericality: { only_integer: true, greater_than: 0 },
+                                 allow_blank: true
 
   scope :incoming,  -> { where 'begins_at > ?', Time.now.to_date }
   scope :activated, -> { where activated: true }

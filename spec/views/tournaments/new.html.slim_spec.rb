@@ -26,7 +26,7 @@ describe 'tournaments/new.html.slim' do
       form.should have_selector %Q(input[name="tournament[begins_at_date]"][value="#{I18n.l tournament.begins_at, format: '%Y-%m-%d'}"][type="date"])
       form.should have_selector %Q(input[name="tournament[begins_at_time]"][value="#{I18n.l tournament.begins_at, format: '%H:%M'}"][type="time"])
       form.should have_selector %Q(input[name="tournament[ends_at_time]"][value="#{I18n.l tournament.ends_at, format: '%H:%M'}"][type="time"])
-      form.should have_selector %Q(input[name="tournament[places]"][value="#{tournament.places}"][type="number"])
+      form.should have_selector %Q(input[name="tournament[places]"][value="#{tournament.places}"][type="number"][min="1"])
       form.should have_selector %Q(textarea[name="tournament[abstract]"]), text: tournament.abstract
       form.should have_selector %Q(input[type="submit"])
     end

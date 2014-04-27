@@ -26,6 +26,10 @@ describe Tournament do
     it { should_not allow_value('Something blatently not an email').for(:organizer_email) }
     it { should allow_value('Whatever.the-email_might01be@gmail-or-anything.blah').for(:organizer_email) }
 
+    it { should validate_numericality_of(:places).only_integer.is_greater_than(0) }
+    it { should allow_value(nil).for(:places) }
+    it { should allow_value('').for(:places) }
+
     describe '#ends_at' do
       before { allow(subject).to receive(:begins_at).and_return { Time.now } }
 
