@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140417220833) do
+ActiveRecord::Schema.define(version: 20140427110944) do
 
   create_table "cities", force: true do |t|
     t.string   "name",                       null: false
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20140417220833) do
     t.string   "admin"
     t.boolean  "activated",          default: false
     t.datetime "ends_at"
+    t.string   "organizer_url"
   end
 
   add_index "tournaments", ["activated"], name: "index_tournaments_on_activated", using: :btree

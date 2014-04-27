@@ -20,6 +20,7 @@ describe 'tournaments/edit.html.slim' do
       form.should have_selector %Q(input[name="a"][value="#{tournament.admin}"][type="hidden"])
       form.should have_selector %Q(input[name="tournament[organizer_email]"][value="#{tournament.organizer_email}"][type="email"])
       form.should have_selector %Q(input[name="tournament[organizer_nickname]"][value="#{tournament.organizer_nickname}"][type="text"])
+      form.should have_selector %Q(input[name="tournament[organizer_url]"][value="#{tournament.organizer_url}"][type="url"])
 
       form.should have_selector %Q(input[name="tournament[name]"][value="#{tournament.name}"][type="text"])
       form.should have_selector %Q(input[name="tournament[address]"][value="#{tournament.address}"][type="text"])

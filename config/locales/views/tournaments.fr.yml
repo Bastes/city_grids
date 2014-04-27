@@ -1,7 +1,7 @@
 fr:
   tournaments:
     show:
-      organized_by: Organisé par %{name}
+      organized_by_html: Organisé par %{name}
       jack_in: "Jack In !"
       participants: "Participants"
       be_the_first: "Soyez le premier !"

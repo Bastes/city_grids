@@ -23,7 +23,7 @@ describe 'tournaments/show.html.slim' do
     within %Q(#tournament) do |item|
       item.should have_selector %Q(h2), text: tournament.name
       within item, %Q(.itself) do |itself|
-        itself.should have_selector %Q(.organizer), text: tournament.organizer_nickname
+        itself.should have_selector %Q(.organizer a[href="#{tournament.organizer_url}"]), text: tournament.organizer_nickname
         itself.should have_selector %Q(.timeframe .begins-at), text: I18n.l(tournament.begins_at, format: :long).capitalize
         itself.should have_selector %Q(.timeframe .ends-at), text: I18n.l(tournament.ends_at, format: :time_of_day)
         itself.should have_selector %Q(a.address[href="#{tournament.address_url}"][target="_blank"]), text: tournament.address
@@ -45,6 +45,13 @@ describe 'tournaments/show.html.slim' do
       end
       item.should have_selector %Q(a[href="#{new_tournament_ticket_path(tournament)}"])
     end
+  end
+
+  context 'the tournament has no organizer_url' do
+    let(:tournament) { create(:tournament, :urlless).decorate }
+
+    it { should_not have_selector %Q(.organizer a) }
+    it { should have_selector %Q(.organizer), text: tournament.organizer_nickname }
   end
 
   context 'the tournament has no ends_at' do

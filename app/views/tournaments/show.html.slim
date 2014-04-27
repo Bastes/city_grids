@@ -11,7 +11,11 @@
         - if @tournament.ends_at?
           span.ends-at= l @tournament.ends_at, format: :time_of_day
       br
-      span.organizer= t '.organized_by', name: @tournament.organizer_nickname
+      span.organizer
+        - if @tournament.organizer_url?
+          == t '.organized_by_html', name: link_to(@tournament.organizer_nickname, @tournament.organizer_url)
+        - else
+          == t '.organized_by_html', name: @tournament.organizer_nickname
       br
       == link_to @tournament.address, @tournament.address_url, class: 'address', target: '_blank'
     == link_to @tournament.address_url, class: 'address_map', target: '_blank' do
