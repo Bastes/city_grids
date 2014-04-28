@@ -58,7 +58,7 @@ CityGrids::Application.configure do
   config.action_controller.asset_host = ENV['asset_host'] || "//s3-#{ENV['FOG_REGION']}.amazonaws.com/#{ENV['FOG_DIRECTORY']}"
   config.action_mailer.asset_host = config.action_controller.asset_host
 
-  config.action_mailer.default_url_options = { host: ENV['main_domain'] || 'netrunner-tournaments.fr' }
+  config.action_mailer.default_url_options = { host: ENV['MAIN_DOMAIN'] || 'netrunner-tournaments.fr' }
 
   # Precompile additional assets.
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
