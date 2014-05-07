@@ -3,7 +3,12 @@
   h2
     = @tournament.name
     - if admin?
-      small<== link_to t('.admin.edit'), edit_tournament_path(@tournament, a: @tournament.admin)
+      small<
+       ==> link_to t('.admin.edit'), edit_tournament_path(@tournament, a: @tournament.admin)
+       |-
+       a.bb< href="#bb" = t '.admin.bb'
+  - if admin?
+    == render partial: 'bb', locals: { tournament: @tournament }
   .itself
     p
       span.timeframe

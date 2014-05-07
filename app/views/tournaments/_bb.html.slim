@@ -1,0 +1,25 @@
+#tournament-bb.reveal-modal[data-reveal]
+  h3= t '.get_more_visibility_html'
+  ol
+    li
+      a.bb-copy href="#bb-copy" = t '.first_step'
+    li= link_to t('.second_step'), 'http://www.run4games.com/forum/viewforum.php?f=151&sid=48832f397a098ca0f3704f54e27867c2', target: '_blank'
+  textarea data-prompt="#{t '.prompt'}"
+    = bb(:b) { bb(:url, tournament_url(tournament)) { tournament.name } }
+    = "\n\n"
+    - ending = if tournament.ends_at? then %Q( - #{l(tournament.ends_at, format: :time_of_day)}) else '' end
+    = %Q(#{l(tournament.begins_at, format: :long).capitalize}#{ending}\n)
+    - organizer = if tournament.organizer_url? then bb(:url, tournament.organizer_url) { tournament.organizer_nickname } else tournament.organizer_nickname end
+    = %Q(#{t 'tournaments.show.organized_by_html', name: organizer}\n)
+
+    = bb(:url, tournament.address_url) { tournament.address }
+    = "\n"
+    == bb(:url, tournament.address_url) do
+      == bb(:img) do
+        == tournament.address_map_url
+    = "\n\n"
+    = tournament.abstract_bb
+    = "\n\n"
+    == bb(:b) do
+      == bb(:url, tournament_url(tournament)) do
+        = t('tournaments.show.jack_in')

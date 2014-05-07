@@ -85,6 +85,11 @@ describe 'tournaments/show.html.slim' do
 
       it { should have_selector %Q(#tournament a[href="#{edit_tournament_path(tournament, a: tournament.admin)}"]) }
 
+      describe 'the bb code controls' do
+        it { should have_selector %Q(#tournament a.bb[href="#bb"]) }
+        it { should have_selector %Q(#tournament #tournament-bb) }
+      end
+
       describe  'the forfeit tickets list' do
         context 'with forfeits' do
           specify do
@@ -110,6 +115,11 @@ describe 'tournaments/show.html.slim' do
 
     context 'visitor' do
       let(:admin) { false }
+
+      describe 'the bb code controls' do
+        it { should_not have_selector %Q(#tournament a.bb) }
+        it { should_not have_selector %Q(#tournament #tournament-bb) }
+      end
 
       it { should_not have_selector %Q(#tournament a[href="#{edit_tournament_path(tournament, a: tournament.admin)}"]) }
       it { should_not have_selector %Q(#tournament .participants .forfeits) }

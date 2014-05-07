@@ -7,6 +7,7 @@ fr:
       be_the_first: "Soyez le premier !"
       admin:
         edit: éditer
+        bb: version forum
       forfeits:
         one: 'Un abandon'
         other: '%{count} abandons'
@@ -14,3 +15,8 @@ fr:
       new_tournament: Nouveau tournoi
     edit:
       edit_tournament: Editer votre tournoi
+    bb:
+      get_more_visibility_html: "Votre tournois serait plus visible sur Run4Games&nbsp;!"
+      first_step: 'Clickez sur ce lien et copiez le bb-code qui apparaît'
+      second_step: 'Editez un message sur le forum Run4Games pour annoncer votre tournois'
+      prompt: 'Pour copier le bb-code Ctrl-C puis Entrée'
