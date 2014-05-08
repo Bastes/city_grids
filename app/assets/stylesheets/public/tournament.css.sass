@@ -9,6 +9,11 @@
   @include grid-row()
   h2
     @include grid-column(12)
+    @media #{$small-only}
+      small
+        display: block
+        margin-top: .5em
+        margin-bottom: .5em
   .itself
     @extend .large-8, .medium-7, .small-12, .columns
     .timeframe
