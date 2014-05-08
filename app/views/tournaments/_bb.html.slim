@@ -1,5 +1,6 @@
 #tournament-bb.reveal-modal[data-reveal]
   h3= t '.get_more_visibility_html'
+  p= t '.save_time_html'
   ol
     li
       a.bb-copy href="#bb-copy" = t '.first_step'
@@ -23,3 +24,4 @@
     == bb(:b) do
       == bb(:url, tournament_url(tournament)) do
         = t('tournaments.show.jack_in')
+  a.close-reveal-modal== '&#215;'

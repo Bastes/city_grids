@@ -8,6 +8,7 @@ describe 'tournaments/_bb.html.slim' do
 
   it { should_not have_selector(%Q(.translation_missing)) }
 
+  it { should have_selector %Q(#tournament-bb a.close-reveal-modal) }
   it { should have_selector %Q(#tournament-bb a.bb-copy[href="#bb-copy"]) }
   it { should have_selector %Q(#tournament-bb a[href="http://www.run4games.com/forum/viewforum.php?f=151&sid=48832f397a098ca0f3704f54e27867c2"][target="_blank"]) }
 

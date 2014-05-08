@@ -16,7 +16,8 @@ fr:
     edit:
       edit_tournament: Editer votre tournoi
     bb:
-      get_more_visibility_html: "Votre tournois serait plus visible sur Run4Games&nbsp;!"
+      get_more_visibility_html: "Votre tournoi serait plus visible sur Run4Games&nbsp;!"
+      save_time_html: 'Pour gagner du temps en diffusant votre annonce sur le forum de la communauté Netrunner, suivez les étapes&nbsp;:'
       first_step: 'Clickez sur ce lien et copiez le bb-code qui apparaît'
-      second_step: 'Editez un message sur le forum Run4Games pour annoncer votre tournois'
+      second_step: 'Collez ce contenu dans un nouveau message sur le forum Run4Games pour annoncer votre tournoi'
       prompt: 'Pour copier le bb-code Ctrl-C puis Entrée'
