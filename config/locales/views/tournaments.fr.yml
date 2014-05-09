@@ -1,6 +1,7 @@
 fr:
   tournaments:
     show:
+      tweet: "Jack in au tournoi netrunner %{name} le %{date} à %{city} !"
       organized_by_html: Organisé par %{name}
       jack_in: "Jack In !"
       participants: "Participants"

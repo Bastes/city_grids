@@ -10,40 +10,54 @@ describe 'tournaments/show.html.slim' do
   before { assign :tournament, tournament }
 
   let(:admin) { false }
-  before { allow(view).to receive(:admin?).and_return(admin) }
-  before { expect(view).to receive(:current_city).with(city) }
 
-  before { render }
+  before { allow(view).to receive(:admin?).and_return(admin) }
+
+  before { render template: 'tournaments/show', layout: 'layouts/application' }
 
   subject { rendered }
 
   it { should_not have_selector(%Q(.translation_missing)) }
 
+  describe 'social sharing tools' do
+    let(:tweet) { view.t 'tournaments.show.tweet', date: I18n.l(tournament.begins_at.to_date), name: tournament.name, city: tournament.city.name }
+    it { should have_selector %Q(head meta[property="og:title"][content="#{tweet}"]), visible: false }
+    it { should have_selector %Q(head meta[property="og:description"][content="#{strip_tags tournament.abstract}"]), visible: false }
+
+    specify 'the share buttons' do
+      within %Q(#tournament .share) do |item|
+        expect(item).to have_selector %Q(a.facebook[href="https://www.facebook.com/sharer/sharer.php?#{tournament_url(tournament).to_query :u}"])
+        expect(item).to have_selector %Q(a.twitter[href="http://twitter.com/intent/tweet/?#{tournament_url(tournament).to_query :url}&#{tweet.to_query :text}"])
+        expect(item).to have_selector %Q(a.google-plus[href="https://plus.google.com/share?#{tournament_url(tournament).to_query :url}&hl=#{I18n.locale}"])
+      end
+    end
+  end
+
   specify 'the tournament itself' do
     within %Q(#tournament) do |item|
-      item.should have_selector %Q(h2), text: tournament.name
+      expect(item).to have_selector %Q(h2), text: tournament.name
       within item, %Q(.itself) do |itself|
-        itself.should have_selector %Q(.organizer a[href="#{tournament.organizer_url}"]), text: tournament.organizer_nickname
-        itself.should have_selector %Q(.timeframe .begins-at), text: I18n.l(tournament.begins_at, format: :long).capitalize
-        itself.should have_selector %Q(.timeframe .ends-at), text: I18n.l(tournament.ends_at, format: :time_of_day)
-        itself.should have_selector %Q(a.address[href="#{tournament.address_url}"][target="_blank"]), text: tournament.address
-        itself.should have_selector %Q(a.address_map[href="#{tournament.address_url}"][target="_blank"] img[src="#{tournament.address_map_url}"])
-        itself.should have_selector %Q(.abstract), text: tournament.abstract
+        expect(itself).to have_selector %Q(.organizer a[href="#{tournament.organizer_url}"]), text: tournament.organizer_nickname
+        expect(itself).to have_selector %Q(.timeframe .begins-at), text: I18n.l(tournament.begins_at, format: :long).capitalize
+        expect(itself).to have_selector %Q(.timeframe .ends-at), text: I18n.l(tournament.ends_at, format: :time_of_day)
+        expect(itself).to have_selector %Q(a.address[href="#{tournament.address_url}"][target="_blank"]), text: tournament.address
+        expect(itself).to have_selector %Q(a.address_map[href="#{tournament.address_url}"][target="_blank"] img[src="#{tournament.address_map_url}"])
+        expect(itself).to have_selector %Q(.abstract), text: tournament.abstract
       end
     end
   end
 
   specify 'the tickets list' do
     within %Q(#tournament .participants .present) do |item|
-      item.should have_selector %Q(h3 .places .all),   text: tournament.places
-      item.should have_selector %Q(h3 .places .taken), text: present_tickets.count
+      expect(item).to have_selector %Q(h3 .places .all),   text: tournament.places
+      expect(item).to have_selector %Q(h3 .places .taken), text: present_tickets.count
       within item, %Q(ul.tickets) do |list|
-        list.should have_selector %Q(li), count: present_tickets.count
+        expect(list).to have_selector %Q(li), count: present_tickets.count
         tournament.tickets.present.each_with_index do |ticket, index|
-          list.should have_selector %Q(li:nth-child(#{index + 1})), text: ticket.nickname
+          expect(list).to have_selector %Q(li:nth-child(#{index + 1})), text: ticket.nickname
         end
       end
-      item.should have_selector %Q(a[href="#{new_tournament_ticket_path(tournament)}"])
+      expect(item).to have_selector %Q(a[href="#{new_tournament_ticket_path(tournament)}"])
     end
   end
 
@@ -103,11 +117,11 @@ describe 'tournaments/show.html.slim' do
         context 'with forfeits' do
           specify do
             within %Q(#tournament .participants .forfeits) do |item|
-              item.should have_selector %Q(h3), text: I18n.t('tournaments.show.forfeits', count: forfeit_tickets.count)
+              expect(item).to have_selector %Q(h3), text: I18n.t('tournaments.show.forfeits', count: forfeit_tickets.count)
               within item, %Q(ul.tickets) do |list|
-                list.should have_selector %Q(li), count: forfeit_tickets.count
+                expect(list).to have_selector %Q(li), count: forfeit_tickets.count
                 tournament.tickets.forfeit.each_with_index do |ticket, index|
-                  list.should have_selector %Q(li:nth-child(#{index + 1})), text: ticket.nickname
+                  expect(list).to have_selector %Q(li:nth-child(#{index + 1})), text: ticket.nickname
                 end
               end
             end

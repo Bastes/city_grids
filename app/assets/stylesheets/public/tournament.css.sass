@@ -7,13 +7,38 @@
     display: none
 #tournament
   @include grid-row()
-  h2
-    @include grid-column(12)
+  .share
+    text-align: center
     @media #{$small-only}
-      small
-        display: block
-        margin-top: .5em
-        margin-bottom: .5em
+      text-align: left
+    @extend .large-4, .large-push-8, .medium-5, .medium-push-7, .small-12, .columns
+    a
+      display: inline-block
+      overflow: hidden
+      width: 3em
+      height: 3em
+      text-indent: 1000px
+      margin-left: .5em
+      &:first-child
+        margin-left: 0
+      background:
+        position: center
+        size: contain
+        color: transparent
+        repeat: no-repeat
+      border-radius: 1.5em
+      @each $network in 'facebook', 'twitter', 'google-plus'
+        &.#{$network}
+          background-image: image-url('#{$network}.svg')
+  h2
+    @extend .large-8, .large-pull-4, .medium-7, .medium-pull-5, .small-12, .columns
+    small
+      display: block
+      margin-top: .5em
+      margin-bottom: .5em
+      @media #{$large-up}
+        display: inline
+        margin: 0
   .itself
     @extend .large-8, .medium-7, .small-12, .columns
     .timeframe
