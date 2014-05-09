@@ -69,8 +69,17 @@ describe 'tournaments/show.html.slim' do
   context 'no participants (yet)' do
     let!(:present_tickets) { nil }
 
-    it { should_not have_selector %(#tournament .participants .present ul.tickets) }
-    it { should have_selector %(#tournament .participants .present .be-the-first) }
+    context 'the tournament is active' do
+      it { should_not have_selector %(#tournament .participants .present ul.tickets) }
+      it { should have_selector %(#tournament .participants .present .be-the-first) }
+    end
+
+    context 'the tournament is over' do
+      let(:tournament) { create(:tournament, :passed).decorate }
+
+      it { should_not have_selector %(#tournament .participants .present ul.tickets) }
+      it { should_not have_selector %(#tournament .participants .present .be-the-first) }
+    end
   end
 
   context 'the tournament is over' do

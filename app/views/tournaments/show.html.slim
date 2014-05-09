@@ -35,7 +35,8 @@
           - if @tournament.places?
             span.all= @tournament.places
       - if @tournament.tickets.present.empty?
-        p.be-the-first= t '.be_the_first'
+        - if @tournament.begins_at.to_date >= Date.today
+          p.be-the-first= t '.be_the_first'
       - else
         ul.tickets
           - @tournament.tickets.present.each do |ticket|
