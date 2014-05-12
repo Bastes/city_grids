@@ -16,6 +16,6 @@ describe 'layouts/_nav.html.slim' do
   context 'under a city' do
     let(:city) { create :city }
 
-    it { should have_selector %Q(nav.top-bar[data-topbar] section.top-bar-section ul.left li a[href="#{city_path(city)}"]), text: city.name }
+    it { should have_selector %Q(nav.top-bar[data-topbar] section.top-bar-section ul.left li.active a[href="#{city_path(city)}"]), text: city.name }
   end
 end
