@@ -12,6 +12,7 @@ describe 'layouts/_nav.html.slim' do
   it { should_not have_selector %Q(.translation_missing) }
 
   it { should have_selector %Q(nav.top-bar[data-topbar] ul.title-area li.name h1 a[href="#{root_path}"]) }
+  it { should have_selector %Q(nav.top-bar[data-topbar] ul.title-area li.toggle-topbar.menu-icon a[href="#"] span) }
 
   context 'under a city' do
     let(:city) { create :city }
