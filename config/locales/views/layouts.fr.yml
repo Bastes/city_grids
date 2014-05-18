@@ -2,6 +2,8 @@ fr:
   layouts:
     application:
       title: Netrunner Tournaments
+    nav:
+      about: A propos
     footer:
       on_run4games_html: "%{link} retrouvez la&nbsp;communauté, les&nbsp;nouveautés, les&nbsp;analyses"
       developed_by_html: "Développé par %{link}"

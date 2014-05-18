@@ -6,7 +6,9 @@
       li.toggle-topbar.menu-icon
         a href="#"
           span
-    - if current_city
-      section.top-bar-section
+    section.top-bar-section[menu-icon]
+      ul.right
+        li[class=([controller.controller_name == 'about' ? 'active' : nil].compact)]== link_to t('.about'), about_path
+      - if current_city
         ul.left
           li.active== link_to current_city.name, current_city

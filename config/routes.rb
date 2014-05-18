@@ -1,6 +1,8 @@
 CityGrids::Application.routes.draw do
   root to: 'cities#index'
 
+  get :about, to: 'about#index'
+
   resources :cities, only: [:show, :new, :create, :activate] do
     get :activate, on: :member
     resources :tournaments, only: [:new, :create]
