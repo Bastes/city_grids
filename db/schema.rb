@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140427110944) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "cities", force: true do |t|
     t.string   "name",                       null: false
     t.datetime "created_at"
@@ -45,13 +48,13 @@ ActiveRecord::Schema.define(version: 20140427110944) do
     t.string   "organizer_nickname"
     t.integer  "places"
     t.datetime "begins_at"
+    t.datetime "ends_at"
     t.text     "abstract"
     t.integer  "city_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "admin"
     t.boolean  "activated",          default: false
-    t.datetime "ends_at"
     t.string   "organizer_url"
   end
 

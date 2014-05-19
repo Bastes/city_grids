@@ -2,7 +2,17 @@ require 'spec_helper'
 
 describe CitiesController do
   describe "GET 'index'" do
-    let!(:cities) { create_list(:city, 3).sort_by &:name }
+    let!(:cities) do
+      [[0, 2], [3, 1], [0, 3], [2, 5], [4, 0], [0, 0]].map do |(n, p)|
+        create(:city).tap do |c|
+          n.times { create :tournament, :incoming, city: c }
+          p.times { create :tournament, :passed,   city: c }
+        end.reload
+      end.sort do |a, b|
+        [a.incoming_tournaments.any? ? -1 : 1, a.name] <=>
+        [b.incoming_tournaments.any? ? -1 : 1, b.name]
+      end
+    end
     before { create_list(:city, 2, :pending) }
     before { get 'index' }
 

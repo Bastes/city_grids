@@ -2,7 +2,11 @@ class CitiesController < ApplicationController
   responders :flash
 
   def index
-    @cities = City.activated.includes(:incoming_tournaments).order(name: :asc)
+    @cities = City.activated.
+      eager_load(:incoming_tournaments).
+      group('cities.id, tournaments.id').
+      order('COUNT(tournaments.id) > 0 DESC, cities.name asc').
+      load
   end
 
   def show
