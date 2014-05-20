@@ -13,10 +13,10 @@ describe 'tournaments/new.html.slim' do
 
   it { should_not have_selector %Q(.translation_missing) }
 
-  it { should have_selector(%Q(#tournament h2.city), text: city.name) }
+  it { should have_selector(%Q(#tournament-new h2.city), text: city.name) }
 
   specify 'the tournament form' do
-    within %Q(#tournament form[action="#{city_tournaments_path(city)}"][method="post"]) do |form|
+    within %Q(#tournament-new form[action="#{city_tournaments_path(city)}"][method="post"]) do |form|
       form.should have_selector %Q(input[name="tournament[organizer_email]"][value="#{tournament.organizer_email}"][type="email"])
       form.should have_selector %Q(input[name="tournament[organizer_nickname]"][value="#{tournament.organizer_nickname}"][type="text"])
       form.should have_selector %Q(input[name="tournament[organizer_url]"][value="#{tournament.organizer_url}"][type="url"])
