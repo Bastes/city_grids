@@ -2,22 +2,48 @@ require 'spec_helper'
 
 describe CitiesController do
   describe "GET 'index'" do
-    let!(:cities) do
-      [[0, 2], [3, 1], [0, 3], [2, 5], [4, 0], [0, 0]].map do |(n, p)|
-        create(:city).tap do |c|
-          n.times { create :tournament, :incoming, city: c }
-          p.times { create :tournament, :passed,   city: c }
-        end.reload
-      end.sort do |a, b|
-        [a.incoming_tournaments.any? ? -1 : 1, a.name] <=>
-        [b.incoming_tournaments.any? ? -1 : 1, b.name]
-      end
-    end
-    before { create_list(:city, 2, :pending) }
-    before { get 'index' }
+    describe 'the cities selected' do
+      before { create_list(:city, 2, :pending) }
+      let!(:cities) { create_list(:city, 3) }
 
-    it { expect(response).to be_success }
-    it { expect(assigns[:cities]).to eq cities }
+      before { get 'index' }
+
+      it { expect(response).to be_success }
+      it { expect(assigns[:cities]).to match_array cities }
+    end
+
+    describe 'the cities order' do
+      let!(:cities) do
+        [[0, 2], [3, 1], [0, 3], [2, 5], [4, 0], [0, 0]].map do |(n, p)|
+          create(:city).tap do |c|
+            n.times { create :tournament, :incoming, city: c }
+            p.times { create :tournament, :passed,   city: c }
+          end.reload
+        end.sort do |a, b|
+          [a.incoming_tournaments.any? ? -1 : 1, a.name] <=>
+          [b.incoming_tournaments.any? ? -1 : 1, b.name]
+        end
+      end
+      before { get 'index' }
+
+      it { expect(response).to be_success }
+      it { expect(assigns[:cities]).to eq cities }
+    end
+
+    describe 'the cities incoming tournaments order' do
+      let!(:city) { create :city }
+      let!(:incoming_tournaments) do
+        [-2, 1, 5, -3, 4, -6].map do |n|
+          create :tournament, city: city, begins_at: n.days.from_now
+        end.reject { |t| t.begins_at < Time.now }.sort_by(&:begins_at)
+      end
+
+      before { get 'index' }
+
+      it { expect(response).to be_success }
+      it { expect(assigns[:cities].first).to eq city }
+      it { expect(assigns[:cities].first.incoming_tournaments).to eq incoming_tournaments }
+    end
   end
 
   describe "GET 'show'" do

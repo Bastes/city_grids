@@ -5,7 +5,7 @@ class CitiesController < ApplicationController
     @cities = City.activated.
       eager_load(:incoming_tournaments).
       group('cities.id, tournaments.id').
-      order('COUNT(tournaments.id) > 0 DESC, cities.name asc').
+      order('COUNT(tournaments.id) > 0 DESC, cities.name asc, tournaments.begins_at asc').
       load
   end
 
