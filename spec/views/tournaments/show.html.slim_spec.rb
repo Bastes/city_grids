@@ -27,7 +27,7 @@ describe 'tournaments/show.html.slim' do
     specify 'the share buttons' do
       within %Q(#tournament .share) do |item|
         expect(item).to have_selector %Q(a.facebook[href="https://www.facebook.com/sharer/sharer.php?#{tournament_url(tournament).to_query :u}"])
-        expect(item).to have_selector %Q(a.twitter[href="http://twitter.com/intent/tweet/?#{tournament_url(tournament).to_query :url}&#{tweet.to_query :text}"])
+        expect(item).to have_selector %Q(a.twitter[href="http://twitter.com/intent/tweet/?#{tournament_url(tournament).to_query :url}&#{tweet.to_query :text}&via=ANRTournaments"])
         expect(item).to have_selector %Q(a.google-plus[href="https://plus.google.com/share?#{tournament_url(tournament).to_query :url}&hl=#{I18n.locale}"])
       end
     end

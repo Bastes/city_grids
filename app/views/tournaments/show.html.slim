@@ -4,7 +4,7 @@
 #tournament.tournament
   .share
     == link_to 'Facebook', "https://www.facebook.com/sharer/sharer.php?#{tournament_url(@tournament).to_query :u}", class: 'facebook'
-    == link_to 'Twitter', "http://twitter.com/intent/tweet/?#{tournament_url(@tournament).to_query :url}&#{tweet.to_query :text}", class: 'twitter'
+    == link_to 'Twitter', "http://twitter.com/intent/tweet/?#{tournament_url(@tournament).to_query :url}&#{tweet.to_query :text}&via=ANRTournaments", class: 'twitter'
     == link_to 'Google+', "https://plus.google.com/share?#{tournament_url(@tournament).to_query :url}&hl=#{I18n.locale}", class: 'google-plus'
   h2
     = @tournament.name
