@@ -74,6 +74,19 @@ describe 'tournaments/show.html.slim' do
     it { should_not have_selector %Q(#tournament .timeframe .ends_at) }
   end
 
+  context 'the tournament ends on another day' do
+    let(:tournament) { create(:tournament, begins_at: Date.today + 12.hours, ends_at: 1.day.from_now.to_date + 18.hours).decorate }
+
+    specify 'the tournament itself' do
+      within %Q(#tournament) do |item|
+        within item, %Q(.itself) do |itself|
+          expect(itself).to have_selector %Q(.timeframe .begins-at), text: I18n.l(tournament.begins_at, format: :long).capitalize
+          expect(itself).to have_selector %Q(.timeframe .ends-at),   text: I18n.l(tournament.ends_at,   format: :long).capitalize
+        end
+      end
+    end
+  end
+
   context 'the tournament has no places' do
     let(:tournament) { create(:tournament, :placesless).decorate }
 

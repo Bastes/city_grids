@@ -59,13 +59,14 @@ describe TournamentsController do
         inject({}) { |r, k| r.tap { r[k] = tournament.send(k) } }.
         merge begins_at_date: I18n.l(tournament.send(:begins_at), format: '%Y-%m-%d'),
               begins_at_time: I18n.l(tournament.send(:begins_at), format: '%H:%M'),
+              ends_at_date:   I18n.l(tournament.send(:ends_at),   format: '%Y-%m-%d'),
               ends_at_time:   I18n.l(tournament.send(:ends_at),   format: '%H:%M')
     end
 
     subject(:the_query) { -> { post 'create', city_id: city.id, tournament: tournament_attributes } }
 
     context 'with valid data' do
-      let(:tournament) { build :tournament }
+      let(:tournament) { build :tournament, begins_at: 5.days.from_now.to_date + 6.hours, ends_at: 6.days.from_now.to_date + 17.hours }
 
       before { expect(TournamentMailer).to receive(:activation).with(an_instance_of(Tournament)).and_return(double().tap { |d| expect(d).to receive(:deliver) }) }
 
@@ -123,6 +124,7 @@ describe TournamentsController do
         inject({}) { |r, k| r.tap { r[k] = other_tournament.send(k) } }.
         merge begins_at_date: I18n.l(other_tournament.send(:begins_at), format: '%Y-%m-%d'),
               begins_at_time: I18n.l(other_tournament.send(:begins_at), format: '%H:%M'),
+              ends_at_date:   I18n.l(other_tournament.send(:ends_at),   format: '%Y-%m-%d'),
               ends_at_time:   I18n.l(other_tournament.send(:ends_at),   format: '%H:%M')
     end
 
@@ -132,7 +134,7 @@ describe TournamentsController do
       let(:admin) { tournament.admin }
 
       context 'with valid data' do
-        let(:other_tournament) { build :tournament }
+        let(:other_tournament) { build :tournament, begins_at: 23.days.from_now.to_date + 11.hours, ends_at: 24.days.from_now.to_date + 18.hours }
 
         it { should_not change(Tournament, :count) }
 

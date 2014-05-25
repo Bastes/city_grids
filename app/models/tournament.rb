@@ -33,20 +33,21 @@ class Tournament < ActiveRecord::Base
     I18n.l begins_at, format: '%H:%M' if begins_at?
   end
 
+  def ends_at_date
+    I18n.l ends_at, format: '%Y-%m-%d' if ends_at?
+  end
+
   def ends_at_time
     I18n.l ends_at, format: '%H:%M' if ends_at?
   end
 
   def copy_errors_for_begins_at_and_ends_at
-    if errors[:begins_at]
-      errors[:begins_at].each do |error|
-        errors.add :begins_at_date, error
-        errors.add :begins_at_time, error
-      end
-    end
-    if errors[:ends_at]
-      errors[:ends_at].each do |error|
-        errors.add :ends_at_time, error
+    %i(begins_at ends_at).each do |field|
+      if errors[field]
+        errors[field].each do |error|
+          errors.add :"#{field}_date", error
+          errors.add :"#{field}_time", error
+        end
       end
     end
   end

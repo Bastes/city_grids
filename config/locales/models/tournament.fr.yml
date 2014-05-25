@@ -27,6 +27,7 @@ fr:
         places: Nombre de places
         begins_at_date: Date du tournoi
         begins_at_time: Début du tournoi
+        ends_at_date: Date de fin du tournoi
         ends_at_time: Fin du tournoi
         abstract: Informations sur le tournoi
     placeholders:

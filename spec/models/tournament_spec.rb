@@ -75,6 +75,7 @@ describe Tournament do
 
       its(:begins_at_date) { should eq I18n.l(tournament.begins_at, format: '%Y-%m-%d') }
       its(:begins_at_time) { should eq I18n.l(tournament.begins_at, format: '%H:%M') }
+      its(:ends_at_date)   { should eq I18n.l(tournament.ends_at,   format: '%Y-%m-%d') }
       its(:ends_at_time)   { should eq I18n.l(tournament.ends_at,   format: '%H:%M') }
     end
 
@@ -82,6 +83,7 @@ describe Tournament do
       {
         begins_at_date: :begins_at,
         begins_at_time: :begins_at,
+        ends_at_date: :ends_at,
         ends_at_time: :ends_at
       }.each do |field, real_field|
         describe "##{field}" do

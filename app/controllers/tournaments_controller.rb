@@ -89,8 +89,8 @@ class TournamentsController < ApplicationController
   end
 
   def tournament_ends_at
-    if params[:tournament] && params[:tournament][:begins_at_date] && params[:tournament][:ends_at_time]
-      "#{params[:tournament][:begins_at_date]} #{params[:tournament][:ends_at_time]}"
+    if params[:tournament] && params[:tournament][:ends_at_date] && params[:tournament][:ends_at_time]
+      "#{params[:tournament][:ends_at_date]} #{params[:tournament][:ends_at_time]}"
     end
   end
 end

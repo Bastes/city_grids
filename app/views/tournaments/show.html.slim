@@ -22,7 +22,8 @@
       span.timeframe
         span.begins-at= l(@tournament.begins_at, format: :long).capitalize
         - if @tournament.ends_at?
-          span.ends-at= l @tournament.ends_at, format: :time_of_day
+          - format = @tournament.begins_at.to_date == @tournament.ends_at.to_date ? :time_of_day : :long
+          span.ends-at= l(@tournament.ends_at, format: format).capitalize
       br
       span.organizer
         - if @tournament.organizer_url?
