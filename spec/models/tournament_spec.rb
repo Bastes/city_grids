@@ -41,6 +41,13 @@ describe Tournament do
   end
 
   describe 'scopes' do
+    describe '#alive' do
+      let!(:alive_tournament) { create_list :tournament, 3, :alive }
+      before { create_list :tournament, 2, :deleted }
+
+      it { expect(Tournament.alive).to match_array alive_tournament }
+    end
+
     describe '#incoming' do
       let!(:incoming_tournaments) { create_list :tournament, 3, :incoming }
       before { create_list :tournament, 3, :passed }

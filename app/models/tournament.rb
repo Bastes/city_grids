@@ -13,6 +13,7 @@ class Tournament < ActiveRecord::Base
   validates :places,             numericality: { only_integer: true, greater_than: 0 },
                                  allow_blank: true
 
+  scope :alive,     -> { where deleted: false }
   scope :incoming,  -> { where 'begins_at > ?', Date.today }
   scope :activated, -> { where activated: true }
   scope :ordered,   -> { order 'begins_at asc' }

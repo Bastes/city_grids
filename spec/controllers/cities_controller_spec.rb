@@ -38,6 +38,9 @@ describe CitiesController do
         end.reject { |t| t.begins_at < Time.now }.sort_by(&:begins_at)
       end
 
+      before { create :tournament, city: city, begins_at: 1.day.ago }
+      before { create :tournament, :deleted, city: city, begins_at: 5.days.from_now }
+
       before { get 'index' }
 
       it { expect(response).to be_success }

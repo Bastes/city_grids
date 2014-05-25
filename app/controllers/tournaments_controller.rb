@@ -28,6 +28,16 @@ class TournamentsController < ApplicationController
     end
   end
 
+  def destroy
+    if admin?
+      tournament.update_attributes deleted: true
+      flash[:notice] = I18n.t 'flash.tournaments.delete.notice'
+      redirect_to tournament.city
+    else
+      redirect_to tournament.city
+    end
+  end
+
   def activate
     if admin?
       unless tournament.activated
@@ -44,7 +54,7 @@ class TournamentsController < ApplicationController
   protected
 
   helper_method def tournament
-    @tournament ||= Tournament.find params[:id]
+    @tournament ||= Tournament.alive.find params[:id]
   end
 
   helper_method def admin?

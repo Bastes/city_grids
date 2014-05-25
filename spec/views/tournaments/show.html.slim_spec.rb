@@ -106,7 +106,10 @@ describe 'tournaments/show.html.slim' do
     context 'admin' do
       let(:admin) { true }
 
+      it { should_not have_selector(%Q(.translation_missing)) }
+
       it { should have_selector %Q(#tournament a[href="#{edit_tournament_path(tournament, a: tournament.admin)}"]) }
+      it { should have_selector %Q(#tournament a[href="#{tournament_path(tournament, a: tournament.admin)}"][data-method="delete"][rel="nofollow"]) }
 
       describe 'the bb code controls' do
         it { should have_selector %Q(#tournament a.bb[href="#bb"]) }

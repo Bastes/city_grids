@@ -55,3 +55,5 @@ fr:
         notice: "Votre tournoi est activé ! Vous recevrez bientôt un email contenant votre url d'administration confidentielle."
       update:
         notice: "Votre tournoi est mis à jour."
+      delete:
+        notice: "Votre tournoi est supprimé."

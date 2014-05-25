@@ -9,10 +9,12 @@
   h2
     = @tournament.name
     - if admin?
-      small<
+      small.admin
        ==> link_to t('.admin.edit'), edit_tournament_path(@tournament, a: @tournament.admin)
-       |-
-       a.bb< href="#bb" = t '.admin.bb'
+       '-
+       a.bb> href="#bb" = t '.admin.bb'
+       '-
+       == link_to t('.admin.delete'), tournament_path(@tournament, a: @tournament.admin), method: :delete
   - if admin?
     == render partial: 'bb', locals: { tournament: @tournament }
   .itself

@@ -1,6 +1,6 @@
 class City < ActiveRecord::Base
   has_many :tournaments, dependent: :destroy
-  has_many :incoming_tournaments, -> { incoming.activated.ordered }, class_name: 'Tournament'
+  has_many :incoming_tournaments, -> { alive.incoming.activated.ordered }, class_name: 'Tournament'
 
   validates :name,  presence: true
   validates :email, presence: true, email: true

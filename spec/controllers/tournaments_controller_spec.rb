@@ -2,13 +2,24 @@ require 'spec_helper'
 
 describe TournamentsController do
   describe "GET 'show'" do
-    let(:tournament) { create :tournament }
 
-    before { get 'show', id: tournament.id }
+    subject(:the_query) { -> { get 'show', id: tournament.id } }
 
-    it { expect(response).to be_success }
-    it { expect(assigns[:tournament]).to eq tournament }
-    it { expect(assigns[:tournament]).to be_decorated }
+    context 'the tournament is alive' do
+      let(:tournament) { create :tournament }
+
+      before { the_query.call }
+
+      it { expect(response).to be_success }
+      it { expect(assigns[:tournament]).to eq tournament }
+      it { expect(assigns[:tournament]).to be_decorated }
+    end
+
+    context 'the tournament has been deleted' do
+      let(:tournament) { create :tournament, :deleted }
+
+      it { should raise_error ActiveRecord::RecordNotFound }
+    end
   end
 
   describe "GET 'new'" do
@@ -105,7 +116,7 @@ describe TournamentsController do
     end
   end
 
-  describe "POST 'update'" do
+  describe "PUT 'update'" do
     let!(:tournament) { create :tournament }
     let(:tournament_attributes) do
       %i(organizer_email organizer_nickname name address places abstract).
@@ -169,6 +180,7 @@ describe TournamentsController do
       end
     end
 
+
     context 'with an invalid admin token' do
       let(:admin) { "Something wrong with #{tournament.admin}" }
       let(:other_tournament) { build :tournament }
@@ -180,6 +192,44 @@ describe TournamentsController do
         before { the_query.call }
 
         it { expect(response).to redirect_to tournament }
+        it { expect(flash[:notice]).to be_nil }
+      end
+    end
+  end
+
+  describe "DELETE 'destroy'" do
+    let!(:tournament) { create :tournament }
+
+    subject(:the_query) { -> { delete 'destroy', id: tournament.id, a: admin } }
+
+    context 'with the valid admin token' do
+      let(:admin) { tournament.admin }
+
+      it { should_not change(Tournament, :count) }
+      it { should_not change { tournament.city.tournaments.count } }
+      it { should change { tournament.city.tournaments.alive.count }.by -1 }
+      it { should change { tournament.reload.deleted }.to true }
+
+      context 'after the query' do
+        before { the_query.call }
+
+        it { expect(response).to redirect_to tournament.city }
+        it { expect(flash[:notice]).not_to be_nil }
+      end
+    end
+
+    context 'with the valid admin token' do
+      let(:admin) { tournament.admin.gsub(/.\Z/, '') }
+
+      it { should_not change(Tournament, :count) }
+      it { should_not change { tournament.city.tournaments.count } }
+      it { should_not change { tournament.city.tournaments.alive.count } }
+      it { should_not change { tournament.reload.deleted } }
+
+      context 'after the query' do
+        before { the_query.call }
+
+        it { expect(response).to redirect_to tournament.city }
         it { expect(flash[:notice]).to be_nil }
       end
     end

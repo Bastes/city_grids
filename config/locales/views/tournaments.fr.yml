@@ -9,6 +9,7 @@ fr:
       admin:
         edit: éditer
         bb: version forum
+        delete: supprimer
       forfeits:
         one: 'Un abandon'
         other: '%{count} abandons'

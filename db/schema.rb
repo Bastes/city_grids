@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140427110944) do
+ActiveRecord::Schema.define(version: 20140525100726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,9 +56,11 @@ ActiveRecord::Schema.define(version: 20140427110944) do
     t.string   "admin"
     t.boolean  "activated",          default: false
     t.string   "organizer_url"
+    t.boolean  "deleted",            default: false
   end
 
   add_index "tournaments", ["activated"], name: "index_tournaments_on_activated", using: :btree
   add_index "tournaments", ["city_id"], name: "index_tournaments_on_city_id", using: :btree
+  add_index "tournaments", ["deleted"], name: "index_tournaments_on_deleted", using: :btree
 
 end

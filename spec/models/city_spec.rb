@@ -10,6 +10,7 @@ describe City do
       before { create_list :tournament, 2, :awaiting_activation, city: city }
       before { create_list :tournament, 2, :passed, city: city }
       before { create_list :tournament, 2, city: create(:city) }
+      before { create_list :tournament, 2, :deleted, city: city }
 
       its(:incoming_tournaments) { should eq incoming_tournaments.sort_by(&:begins_at) }
     end

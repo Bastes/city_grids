@@ -32,13 +32,12 @@
           background-image: image-url('#{$network}.svg')
   h2
     @extend .large-8, .large-pull-4, .medium-7, .medium-pull-5, .small-12, .columns
-    small
+    small.admin
       display: block
       margin-top: .5em
       margin-bottom: .5em
-      @media #{$large-up}
-        display: inline
-        margin: 0
+      a[data-method="delete"]
+        color: $alert-color
   .itself
     @extend .large-8, .medium-7, .small-12, .columns
     .timeframe

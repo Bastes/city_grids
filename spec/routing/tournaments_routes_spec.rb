@@ -6,8 +6,9 @@ describe 'tournaments routes' do
   it { expect(get: "/cities/#{city_id}/tournaments/new").to route_to('tournaments#new', city_id: city_id.to_s) }
   it { expect(post: "/cities/#{city_id}/tournaments").to route_to('tournaments#create', city_id: city_id.to_s) }
 
-  it { expect(get: "/tournaments/#{id}").to route_to('tournaments#show', id: id.to_s) }
-  it { expect(get: "/tournaments/#{id}/edit").to route_to('tournaments#edit', id: id.to_s) }
-  it { expect(put: "/tournaments/#{id}").to route_to('tournaments#update', id: id.to_s) }
-  it { expect(get: "/tournaments/#{id}/activate").to route_to('tournaments#activate', id: id.to_s) }
+  it { expect(get:    "/tournaments/#{id}").to route_to('tournaments#show', id: id.to_s) }
+  it { expect(get:    "/tournaments/#{id}/edit").to route_to('tournaments#edit', id: id.to_s) }
+  it { expect(put:    "/tournaments/#{id}").to route_to('tournaments#update', id: id.to_s) }
+  it { expect(delete: "/tournaments/#{id}").to route_to('tournaments#destroy', id: id.to_s) }
+  it { expect(get:    "/tournaments/#{id}/activate").to route_to('tournaments#activate', id: id.to_s) }
 end
